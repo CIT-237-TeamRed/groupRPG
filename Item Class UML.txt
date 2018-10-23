@@ -1,0 +1,10 @@
+	Item
+
+-itemName: string
+-itemQuantity: int
+
++setItemName(itemName: string):void
++setItemQuantity(itemQuantity: int):void
++getItemName():string
++getItemQuantity():int
+
