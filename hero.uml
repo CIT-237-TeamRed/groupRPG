@@ -1,0 +1,34 @@
+# Hero
+	| Access | name: type															| Validation
+	| ---    | --- 																| --- 
+	| -      | health: double														| Should be greater zero and less than maxHealth
+	| -      | maxHealth: double														| Should be greater than zero
+	| -      | lives: int															| Should be greater than zero and less than maxLives
+	| -      | maxLives: int															| Should be greater than zero
+	| -      | currentWeapon: Weapon													| Should be in possibleWeapons
+	| -      | inventory: Item[]														| 
+	| -      | numItems: int															| Should be greater than zero and less than maxItems
+	| -      | maxItems: int															| Should be greater than zero
+	| 
+	| +      | getHealth(): double													| 
+	| +      | getMaxHealth(): double													| 
+	| +      | setHealth(newHealth: double): void										| newHealth must be greater than zero and less than maxHealth
+	| +      | getLives(): double														|
+	| +      | getMaxLives(): int														|
+	| +      | setLives(newLives: int): int												| newLives must be greather than zero and less than maxLives
+	| +      | getCurrentWeapon(): Weapon												|
+	| +      | setCurrentWeapon(newWeapon: Weapon): void									| Should be both in possibleWeapons and in the inventory
+	| 
+	| +      | addToInventory(newItem: Item): void										| 
+	| +      | removeFromInventory(item: Item): void										| Should be something in the inventory
+	| +      | getInventory(rtnInventory: Item[], rtnNumItems: int*): void					| 
+	| +      | getSizeOfInventory(): int												|
+	| +      | getMaxSizeOfInventory(): int												| 
+	| +      | Hero(health: double, lives: int)											| health must be > 0 and < maxHealth, same for lives
+	| +      | Hero(health: double, maxHealth: double, lives: int, maxLives: int)				| health must be > 0 and < maxHealth, same for lives, maxHealth and maxLives must be greater than 0
+
+## Subclass Mage
+
+## Subclass Thief
+
+## Subclass Warrior
