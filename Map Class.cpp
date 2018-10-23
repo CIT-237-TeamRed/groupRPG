@@ -10,11 +10,11 @@ void Map::setTerrain(int x, int y, Map::Terrain mapTerrain) { //set terrain type
 }
 
 void Map::switchEnemy(int x, int y) { //reverses value if isEnemy for a unit
-	grid[x][y].isEnemy = -grid[x][y].isEnemy;
+	grid[x][y].isEnemy = !grid[x][y].isEnemy;
 }
 
 void Map::switchItem(int x, int y) { //reverses value if isItem for a unit
-	grid[x][y].isItem = -grid[x][y].isEnemy;
+	grid[x][y].isItem = !grid[x][y].isItem;
 }
 
 
