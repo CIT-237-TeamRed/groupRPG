@@ -34,6 +34,4 @@ public:                              //Mutators
 	int getEnemyHealth();
 	int getEnemyWeapon();
 };
-#endif;
-
-
+#endif

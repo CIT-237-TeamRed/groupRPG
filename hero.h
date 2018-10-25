@@ -4,7 +4,7 @@
 #pragma once
 #ifndef HERO_H
 #define HERO_H
-#include "item.h" // This is a temp class that doesn't do anything right now
+#include "Item.h" // This is a temp class that doesn't do anything right now
 class Hero {
 	private:
 		double health;

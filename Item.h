@@ -17,4 +17,7 @@ public:
 	void setItemQuantity(int quantity);
 	int getItemQuantity() { return itemQuantity; }
 };
+
+class Weapon: public Item {
+};
 #endif

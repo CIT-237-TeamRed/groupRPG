@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "hero.h"
-#include "item.h"
+#include "Item.h"
 
 using namespace std;
 

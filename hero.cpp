@@ -2,7 +2,7 @@
 // Hero class for RPG project
 
 #include "hero.h"
-#include "item.h" // This is a temp class that doesn't do anything right now
+#include "Item.h" // This is a temp class that doesn't do anything right now
 
 void Hero::setHealth(double newHealth) {
 	if (newHealth > 0 && newHealth <= getMaxHealth()) {
@@ -37,7 +37,7 @@ void Hero::setMaxLevel(double newMaxLevel) {
 }
 void Hero::setCurrentWeapon(Weapon newWeapon) {
 	for (int i = 0; i < numItems; i++) {
-		if (inventory[i] == newWeapon)
+		//if (inventory[i] == newWeapon)
 			currentWeapon = newWeapon;
 	}
 }
