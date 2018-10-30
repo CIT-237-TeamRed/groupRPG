@@ -52,5 +52,8 @@ int main() {
 	mage.setCurrentWeapon(sword);
 	cout << mage << endl;
 
+	cout << "mage.getPhysicalDamage(): " << mage.getPhysicalDamage() << endl;
+	cout << "mage.getMagicDamage(): " << mage.getMagicDamage() << endl;
+
 	return 0;
 }

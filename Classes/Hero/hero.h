@@ -41,6 +41,8 @@ class Hero {
 		Weapon* getCurrentWeapon() { return currentWeapon; };
 		int getSizeOfInventory() { return numItems; };
 		int getMaxSizeOfInventory() { return maxItems; };
+		int getPhysicalDamage() { return physicalDamage; };
+		int getMagicDamage() { return magicDamage; };
 		//void getInventory(Item rtnInventory[], int &rtnNumItems);
 		void attack(Enemy enemy);
 

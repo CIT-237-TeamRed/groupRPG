@@ -4,8 +4,8 @@
 #include "Item/Tool/Tool.h"
 class Weapon : public Tool{
 protected:
-    int physicalDamage;
-    int magicDamage;
+    int physicalDamage = 0;
+    int magicDamage = 0;
 public:
     //Physical::Type::STICK
     //void setType(Type type);

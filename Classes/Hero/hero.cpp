@@ -40,6 +40,8 @@ void Hero::setCurrentWeapon(Weapon &newWeapon) {
 	for (int i = 0; i < numItems; i++) {
 		//if (inventory[i] == newWeapon)
 			currentWeapon = &newWeapon;
+			physicalDamage += newWeapon.getPhysicalDamage();
+			magicDamage += newWeapon.getMagicDamage();
 	}
 }
 
