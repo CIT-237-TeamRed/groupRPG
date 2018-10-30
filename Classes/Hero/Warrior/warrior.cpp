@@ -1,6 +1,3 @@
-#include "warrior.cpp"
-Warrior::Warrior(string name, double health, int level) {
-	this->name = name;
-	setHealth(health);
-	setLevel(level);
+#include "warrior.h"
+Warrior::Warrior(string name, int health, int lives): Hero(name, health, lives) {
 }

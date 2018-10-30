@@ -10,7 +10,7 @@ private:
 public:
     void setType(Type type);
     Type getType() {return type;}
-    void use();
+    //void use();
 
 	Physical(Type type);
 };

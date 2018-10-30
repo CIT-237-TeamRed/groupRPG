@@ -7,7 +7,7 @@
 #include "Hero/hero.h"
 class Mage : public Hero {
 	private:
-		double maxHealth = 20;
+		int maxHealth = 20;
 		double magic;
 		double maxMagic = 10;
 	public:
@@ -16,6 +16,6 @@ class Mage : public Hero {
 
 		void setMagic(double newMagic);
 
-		Mage(string name, double health, int lives, double magic)/*: Hero(string name, double health, int level)*/;
+		Mage(string name, int health, int lives, double magic)/*: Hero(string name, double health, int level)*/;
 };
 #endif

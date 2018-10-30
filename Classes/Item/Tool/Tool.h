@@ -6,6 +6,6 @@ class Tool : public Item{
 private:
 
 public:
-    virtual void use() = 0;
+    //virtual void use() = 0;
 };
 #endif

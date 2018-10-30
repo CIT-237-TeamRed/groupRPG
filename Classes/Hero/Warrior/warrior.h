@@ -7,8 +7,8 @@
 #include "Hero/hero.h"
 class Warrior : public Hero {
 	private:
-		double maxHealth = 30;
+		int maxHealth = 30;
 	public:
-		Warrior(string name, double health, int level);
+		Warrior(string name, int health, int lives);
 };
 #endif

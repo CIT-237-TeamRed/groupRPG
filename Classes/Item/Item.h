@@ -10,6 +10,6 @@ private:
 public:
 	void setName(string name);
 	string getName() { return name; }
-	virtual void use() = 0;
+	//virtual void use() = 0;
 };
 #endif

@@ -6,7 +6,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "g++ -I Classes Tests/testMage.cpp Classes/mage.cpp Classes/Weapon.cpp Classes/hero.cpp -o Builds/testMage && Builds/testMage",
+            "command": "g++ -I Classes Tests/testMage.cpp Classes/Hero/hero.cpp Classes/Hero/Theif/theif.cpp Classes/Hero/Warrior/warrior.cpp Classes/Hero/Mage/mage.cpp Classes/Enemy/EnemyClass.cpp 'Classes/Map/Map Class.cpp' Classes/Item/Ingestible/Ingestible.cpp Classes/Item/Item.cpp Classes/Item/Tool/Tool.cpp Classes/Item/Tool/Weapon/Magic/Magic.cpp Classes/Item/Tool/Weapon/Weapon.cpp Classes/Item/Tool/Weapon/Physical/Physical.cpp -o Builds/testMage && Builds/testMage",
             "group": {
                 "kind": "build",
                 "isDefault": true

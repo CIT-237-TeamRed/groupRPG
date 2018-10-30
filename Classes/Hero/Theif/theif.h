@@ -8,9 +8,9 @@
 #include "Hero/hero.h"
 class Theif: public Hero {
 	private:
-		double maxHealth = 10;
+		int maxHealth = 10;
 	public:
 		friend void stealWeapon(Enemy enemy);
-		Theif(string name, double health, int level);
+		Theif(string name, int health, int lives);
 };
 #endif

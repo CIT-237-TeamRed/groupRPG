@@ -11,14 +11,14 @@
 class Item;
 class Weapon;
 class Hero {
-	private:
+	protected:
 		string name;
 		int health;
 		int maxHealth = 20;
 		int lives;
 		int maxLives = 10;
-		//Weapon currentWeapon;
-		Item **inventory;
+		Weapon* currentWeapon = nullptr;
+		Item **inventory = nullptr;
 		int numItems = 0;
 		int maxItems = 30;
 		int energy;
@@ -29,7 +29,7 @@ class Hero {
 		void setMaxHealth(int newMaxHealth);
 		void setLives(int newLives);
 		void setMaxLives(int newMaxLives);
-		//void setCurrentWeapon(Weapon newWeapon);
+		void setCurrentWeapon(Weapon &newWeapon);
 
 		void addToInventory(Item &newItem);
 		void removeFromInventory(Item &item);
@@ -38,7 +38,7 @@ class Hero {
 		double getMaxHealth() { return maxHealth; };
 		int getLives() { return lives; };
 		int getMaxLives() { return maxLives; };
-		//Weapon getCurrentWeapon() { return currentWeapon; };
+		Weapon* getCurrentWeapon() { return currentWeapon; };
 		int getSizeOfInventory() { return numItems; };
 		int getMaxSizeOfInventory() { return maxItems; };
 		//void getInventory(Item rtnInventory[], int &rtnNumItems);

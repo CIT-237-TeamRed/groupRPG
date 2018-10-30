@@ -40,8 +40,16 @@ int main() {
 	mage.setHealth(10);
 	cout << mage << endl;
 
+	cout << "Setting the sword to be the current weapon" << endl;
+	mage.setCurrentWeapon(sword);
+	cout << mage << endl;
+
 	cout << "Adding sword to mage's inventory" << endl;
 	mage.addToInventory(sword);
+	cout << mage << endl;
+
+	cout << "Setting the sword to be the current weapon" << endl;
+	mage.setCurrentWeapon(sword);
 	cout << mage << endl;
 
 	return 0;
