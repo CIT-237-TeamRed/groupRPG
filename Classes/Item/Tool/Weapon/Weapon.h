@@ -5,7 +5,7 @@
 class Weapon : public Tool{
 public:
     enum Type {STICK, SWORD};
-private:
+protected:
     int physicalDamage;
     int magicDamage;
     Type type;
