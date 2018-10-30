@@ -1,0 +1,5 @@
+ITEM
+-itemName: string
+
++getItemName():string
++getItemQuantity():int

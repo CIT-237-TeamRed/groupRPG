@@ -5,7 +5,7 @@ void Map::setDimensions(int mapWidth, int mapLength) {
 	length = mapLength;
 }
 
-void Map::setTerrain(int x, int y, Map::Terrain mapTerrain) { //set terrain type of specific unit
+void Map::setTerrain(int x, int y, Terrain mapTerrain) { //set terrain type of specific unit
 	grid[x][y].terrain = mapTerrain;
 }
 

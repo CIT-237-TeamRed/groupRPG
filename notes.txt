@@ -1,0 +1,68 @@
+Physical sword("sword");
+Warrior warrior();
+warrior.equip(sword);
+// warrior.physicalDamage += sword.physicalDamage
+// warrior.magicDamage += sword.magicDamage
+
+in Weapon.h:
+    string weaponType; // string type; ?
+    int physicalDamage; // int strength; ?    
+    int magicDamage;    // int strength; ?
+
+in Physical.h:
+    int magicDamage = 0;
+
+Weapon(string type);
+    weaponType = type
+    if (type == "sword")
+        physicalDamage = 5;
+
+
+//switch example
+switch(botType){
+case HOT:
+cout << "hot" 
+break;
+default:
+cout << "dogorhat"
+break:
+}
+
+
+
+
+
+
+
+
+	Items
+	Tool
+		Weapon
+			Physical
+			+enum Type {STICK, SWORD, KNUCKLES, GUN};
+			-physicalDmg:int
+			-description:string
+
+			PhysicalWeapon(weapon:Physical::Type)
+
+
+				feeble stick
+				extra long sword
+				diamond knuckles
+				golden scar
+			Magical
+			+enum Type {DIRT, FIRE, ELECTRICITY, WATER};
+			-physicalDmg:int
+			-description:string
+				conjure dirt
+				fire hands
+				electric rain
+				tidal wave
+
+	Ingestible
+
+-health potion
+-pysical damage steroid
+-magic damgage steroid
+-health potion
+-add life
