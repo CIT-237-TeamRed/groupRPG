@@ -4,23 +4,26 @@
 
 /*              Enemy              *
  ***********************************
- *      int enemyType              *
+ *      string enemyType           *
  *      int health                 *
- *      Weapon currentWeapon       *
+ *      string currentWeapon       *
+ *      int weaponDamage           *
  ***********************************
  *     void setWeapon()            *
  *     void setHealth()            *
  *     void setEnemy()             *
- *     int getEnemyWeapon()        *
+ *     void setWeaponDamage        *
+ *     string getEnemyWeapon()     *
  *     int getEnemyHealth()        *
- *     int getEnemyType()          *
+ *     string getEnemyType()       *
+ *     int getWeaponDamage         *
  ***********************************/
 
 #include "EnemyClassHeader.h"
 #include <iostream>
 using namespace std;
 
-void Enemy::setWeapon(int randoWeapon)  //set which weapon the enemy will be using
+void Enemy::setWeapon(string randoWeapon)  //set which weapon the enemy will be using
 {
 	currentWeapon = randoWeapon;
 }
@@ -30,12 +33,17 @@ void Enemy::setHealth(int newHealth)       // set the health of the enemy
 	health = newHealth;
 }
 
-void Enemy::setEnemyType(int randoEnemy)     // Randomize which enemy will be used
+void Enemy::setEnemyType(string randoEnemy)     // Randomize which enemy will be used
 {
 	enemyType = randoEnemy;
 }
 
-int Enemy::getEnemyType()
+void Enemy::setWeaponDamage(int newDamage)
+{
+	weaponDamage = newDamage;
+}
+
+string Enemy::getEnemyType()
 {
 	return enemyType;
 }
@@ -45,9 +53,27 @@ int Enemy::getEnemyHealth()
 	return health;
 }
 
-int Enemy::getEnemyWeapon()
+string Enemy::getEnemyWeapon()
 {
 	return currentWeapon;
 }
 
+int Enemy::getWeaponDamage()
+{
+	return weaponDamage;
+}
 
+int Enemy::randomize(int firstNum, int secondNum)
+{
+	return ((rand() % (firstNum - secondNum + 1)) + secondNum);
+}
+
+bool Enemy::primeFunction(int testForPrime)
+{
+	for (int count = 2; count < testForPrime; count++)
+	{
+		if (testForPrime % count == 0)
+			return false;
+	}
+	return true;
+}

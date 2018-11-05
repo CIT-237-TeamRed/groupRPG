@@ -2,6 +2,7 @@
 #ifndef EnemyClassHeader_H
 #define EnemyClassHeader_H
 #include <iostream>
+using namespace std;
 
 
 /*              Enemy              *
@@ -22,16 +23,26 @@
 class Enemy
 {
 private:                             //Accessors
-	int enemyType;       
-	int health;
-	int currentWeapon;               // Weapon.h will be included later and will really say Weapon currentWeapon
+	string enemyType;       
+    int health ;                           // Might need to set to virtual
+	string currentWeapon;               // Weapon.h will be included later and will really say Weapon currentWeapon
+	int weaponDamage;
 
 public:                              //Mutators
-	void setWeapon(int);
+	void setWeapon(string);
 	void setHealth(int);
-	void setEnemyType(int);           // this will set the enemy being benign or viscous (not sure how to do that)
-	int getEnemyType();   
+	void setEnemyType(string);           // this will set the enemy being benign or viscous (not sure how to do that)
+	void setWeaponDamage(int);
+	
+	string getEnemyType();   
 	int getEnemyHealth();
-	int getEnemyWeapon();
+	string getEnemyWeapon();
+	int getWeaponDamage();
+	
+	int randomize(int, int);
+	bool primeFunction(int);
+	
 };
 #endif
+
+
