@@ -38,6 +38,8 @@ public:                              //Mutators
 	int getEnemyHealth();
 	string getEnemyWeapon();
 	int getWeaponDamage();
+
+	virtual void setEnemy();
 	
 	int randomize(int, int);
 	bool primeFunction(int);

@@ -9,7 +9,7 @@
  ***************************
  *   int health            *
  *   string weapon         *
- *   int weaponDamage            *
+ *   int weaponDamage      *
  ***************************
  *  void setHealth         *
  *  void setWeapon         *
@@ -19,7 +19,7 @@
  *  int getWeaponDamage    *
  **************************/
 
-class Thief : Enemy
+class Thief : public Benign
 
 {
 	// Accessors
@@ -28,5 +28,6 @@ private:
 
 public:
 	Thief();
+	void setEnemy();
 };
 #endif

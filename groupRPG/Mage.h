@@ -8,14 +8,11 @@
 class Mage : public Hero {
 	private:
 		int maxHealth = 20;
-		double magic;
-		double maxMagic = 10;
+		int magicDamage = 3;
+		int physicalDamage = 1;
+		int energy = 100;
+		virtual void abstract();
 	public:
-		double getMagic() { return magic; };
-		double getMaxMagic() { return maxMagic; };
-
-		void setMagic(double newMagic);
-
-		Mage(string name, int health, int lives, double magic)/*: Hero(string name, double health, int level)*/;
+		Mage(string name, int health, int lives)/*: Hero(string name, double health, int level)*/;
 };
 #endif

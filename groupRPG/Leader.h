@@ -8,9 +8,12 @@
 #include "Hero.h"
 class Leader: public Hero {
 	private:
-		int maxHealth = 10;
+		int maxHealth = 20;
+		int physicalDamage = 2;
+		int magicDamage = 2;
+		int energy = 50;
+		virtual void abstract();
 	public:
-		//friend void stealWeapon(Enemy enemy);
 		Leader(string name, int health, int lives);
 };
 #endif

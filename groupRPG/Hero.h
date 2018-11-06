@@ -24,6 +24,7 @@ class Hero {
 		int energy;
 		int physicalDamage = 1;
 		int magicDamage = 1;
+		virtual void abstract() = 0;
 	public:
 		void setHealth(int newHealth);
 		void setMaxHealth(int newMaxHealth);
@@ -44,7 +45,8 @@ class Hero {
 		int getPhysicalDamage() { return physicalDamage; };
 		int getMagicDamage() { return magicDamage; };
 		//void getInventory(Item rtnInventory[], int &rtnNumItems);
-		void attack(Enemy enemy);
+		void attack(Enemy &enemy);
+
 
 		Hero(string name, double health, int lives);
 		Hero(string name, double health, double maxHealth, int lives, int maxLives);

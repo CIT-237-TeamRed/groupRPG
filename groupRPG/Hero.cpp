@@ -63,6 +63,10 @@ void Hero::getInventory(Item rtnInventory[], int &rtnNumItems) {
 }
 */
 
+void Hero::attack(Enemy &enemy) {
+	enemy.setHealth(enemy.getEnemyHealth() - physicalDamage - magicDamage);
+}
+
 Hero::Hero(string newName, double health, int lives) { 
 	name = newName;
 	setHealth(health);

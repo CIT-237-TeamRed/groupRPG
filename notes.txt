@@ -1,4 +1,13 @@
-Physical sword("sword");
+
+CLASSES TO MAKE ABSTRACT
+enemy
+benign
+viscious 
+hero
+item
+Ingestible
+
+`Physical sword("sword");
 Warrior warrior();
 warrior.equip(sword);
 // warrior.physicalDamage += sword.physicalDamage
