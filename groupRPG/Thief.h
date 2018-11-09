@@ -2,32 +2,24 @@
 #ifndef Thief_H
 #define Thief_H
 #include <string>
-#include "Enemy.h"
 #include "Benign.h"
 
-/*       Theif             *
+/*       Theif              *
+ ****************************
+ *   -int weaponDamage      *
  ***************************
- *   int health            *
- *   string weapon         *
- *   int weaponDamage      *
- ***************************
- *  void setHealth         *
- *  void setWeapon         *
- *  void setWeaponDamage   *
- *  int getHealth          *
- *  string getWeapon       *
- *  int getWeaponDamage    *
- **************************/
+ *   +void setEnemy()       *
+ ***************************/
 
 class Thief : public Benign
 
 {
 	// Accessors
 private:
-	int weaponDamage;
+	int weaponDamage;            //??? Maybe just hard code the WeaponDamage but if want to change stats would be easier to have private variables
 
+	// Mutators
 public:
-	Thief();
 	void setEnemy();
 };
 #endif

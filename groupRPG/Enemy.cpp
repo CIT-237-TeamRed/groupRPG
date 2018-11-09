@@ -1,26 +1,33 @@
 // Daniel Richardson
-// Oct. 22, 2018
+// Oct. 22, 2018/ Nov. 8, 2018
 // CIT237-01
 
 /*              Enemy              *
  ***********************************
- *      string enemyType           *
- *      int health                 *
- *      string currentWeapon       *
- *      int weaponDamage           *
+ *     -int enemyType              *
+ *     -int health                 *
+ *     -int weaponDamage           *
+ *     -string currentWeapon       *
+ *     -bool hostile               *
  ***********************************
- *     void setWeapon()            *
- *     void setHealth()            *
- *     void setEnemy()             *
- *     void setWeaponDamage        *
- *     string getEnemyWeapon()     *
- *     int getEnemyHealth()        *
- *     string getEnemyType()       *
- *     int getWeaponDamage         *
- ***********************************/
+ *     +void setWeapon(s)            *
+ *     +void setHealth(i)            *
+ *     +void setEnemyType(s)         *
+ *     +void setWeaponDamage(i)      *
+ *     +Enemy()                      *
+ *     +string getEnemyType()        *
+ *     +int getEnemyHealth()         *
+ *     +string getEnemyWeapon()      *
+ *     +int getWeaponDamage()        *
+ *     +bool isHostile()             *
+ *     +virtual void setEnemy()      *
+ *     +int randomize(i, i)          *
+ *     +bool primeFunction(i)        *
+ *************************************/
 
 #include "Enemy.h"
 #include <iostream>
+//#include "Benign.h"
 using namespace std;
 
 void Enemy::setWeapon(string randoWeapon)  //set which weapon the enemy will be using
@@ -43,6 +50,11 @@ void Enemy::setWeaponDamage(int newDamage)
 	weaponDamage = newDamage;
 }
 
+void Enemy::setHostile(bool hostileIs)
+{
+	hostile = hostileIs;
+}
+
 string Enemy::getEnemyType()
 {
 	return enemyType;
@@ -61,6 +73,15 @@ string Enemy::getEnemyWeapon()
 int Enemy::getWeaponDamage()
 {
 	return weaponDamage;
+}
+
+bool Enemy::isHostile()
+{
+	return hostile;
+}
+
+Enemy::Enemy()
+{
 }
 
 int Enemy::randomize(int firstNum, int secondNum)
