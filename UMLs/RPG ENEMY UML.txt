@@ -1,0 +1,62 @@
+
+
+ENEMY UML
+
+ ***********************************
+ *     -int enemyType              *
+ *     -int health                 *
+ *     -int weaponDamage           *
+ *     -string currentWeapon       *
+ *     -bool hostile               *
+ ***********************************
+ *     +void setWeapon(s)            *
+ *     +void setHealth(i)            *
+ *     +void setEnemyType(s)         *
+ *     +void setWeaponDamage(i)      *
+ *     +Enemy()                      *
+ *     +string getEnemyType()        *
+ *     +int getEnemyHealth()         *
+ *     +string getEnemyWeapon()      *
+ *     +int getWeaponDamage()        *
+ *     +bool isHostile()             *
+ *     +virtual void setEnemy()      *
+ *     +int randomize(i, i)          *
+ *     +bool primeFunction(i)        *
+ *************************************/
+
+
+
+BENIGN AND VICIOUS UML
+
+****************************
+*      bool hostile        *
+****************************
+*    Benign() / Vicious()  *
+*   virtual void setEnemy  *
+****************************/
+
+
+
+
+
+
+
+BIGFOOT  &   BANSHEE UML
+
+****************************
+*   -int weaponDamage      *
+****************************
+*   +void setEnemy()       *
+****************************/
+
+
+
+
+
+
+SILVERMAN  &  THIEF UML
+****************************
+*   -int weaponDamage      *
+***************************
+*   +void setEnemy()       *
+***************************/
