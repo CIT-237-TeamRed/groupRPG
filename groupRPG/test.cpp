@@ -16,19 +16,19 @@ int main() {
     cout << "-------------" << endl
          << "TESTING THE LEADER CLASS" << endl 
          << "-------------" << endl;
-	Physical sword1(Physical::SWORD);
 	cout << "Making testLeader with 5 health and 10 lives" << endl;
 	Leader testLeader("Steve", 5, 10);
+	Physical sword1(Physical::SWORD);
 	cout << testLeader << endl;
 
 	cout << "testLeader.getMaxHealth() should be 20: " << testLeader.getMaxHealth() << endl;
 	cout << "testLeader.getMaxLives() should be 10: " << testLeader.getMaxLives() << endl;
 
-	cout << "Setting testLeader's level to 40" << endl;
+	cout << "Setting testLeader's lives to 40" << endl;
 	testLeader.setLives(40);
 	cout << testLeader << endl;
 
-	cout << "Setting testLeader's level to -100" << endl;
+	cout << "Setting testLeader's lives to -100" << endl;
 	testLeader.setLives(-100);
 	cout << testLeader << endl;
 
@@ -40,7 +40,7 @@ int main() {
 	testLeader.setLives(-140);
 	cout << testLeader << endl;
 
-	cout << "Setting testLeader's level to 3" << endl;
+	cout << "Setting testLeader's lives to 3" << endl;
 	testLeader.setLives(3);
 	cout << testLeader << endl;
 
@@ -68,11 +68,11 @@ int main() {
 	cout << "testMage.getMaxHealth() should be 20: " << testMage.getMaxHealth() << endl;
 	cout << "testMage.getMaxLives() should be 10: " << testMage.getMaxLives() << endl;
 
-	cout << "Setting testMage's level to 40" << endl;
+	cout << "Setting testMage's lives to 40" << endl;
 	testMage.setLives(40);
 	cout << testMage << endl;
 
-	cout << "Setting testMage's level to -100" << endl;
+	cout << "Setting testMage's lives to -100" << endl;
 	testMage.setLives(-100);
 	cout << testMage << endl;
 
@@ -84,7 +84,7 @@ int main() {
 	testMage.setLives(-140);
 	cout << testMage << endl;
 
-	cout << "Setting testMage's level to 3" << endl;
+	cout << "Setting testMage's lives to 3" << endl;
 	testMage.setLives(3);
 	cout << testMage << endl;
 
@@ -112,11 +112,11 @@ int main() {
 	cout << "testWarrior.getMaxHealth() should be 20: " << testWarrior.getMaxHealth() << endl;
 	cout << "testWarrior.getMaxLives() should be 10: " << testWarrior.getMaxLives() << endl;
 
-	cout << "Setting testWarrior's level to 40" << endl;
+	cout << "Setting testWarrior's lives to 40" << endl;
 	testWarrior.setLives(40);
 	cout << testWarrior << endl;
 
-	cout << "Setting testWarrior's level to -100" << endl;
+	cout << "Setting testWarrior's lives to -100" << endl;
 	testWarrior.setLives(-100);
 	cout << testWarrior << endl;
 
@@ -128,7 +128,7 @@ int main() {
 	testWarrior.setLives(-140);
 	cout << testWarrior << endl;
 
-	cout << "Setting testWarrior's level to 3" << endl;
+	cout << "Setting testWarrior's lives to 3" << endl;
 	testWarrior.setLives(3);
 	cout << testWarrior << endl;
 
