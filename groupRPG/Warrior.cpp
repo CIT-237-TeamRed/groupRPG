@@ -6,3 +6,6 @@ void Warrior::abstract() {
 
 Warrior::Warrior(string name, int health, int lives): Hero(name, health, lives) {
 }
+
+Warrior::Warrior(string name): Hero(name) {
+}

@@ -10,3 +10,7 @@ Mage::Mage(string newName, int health, int lives): Hero(newName, health, lives) 
 	//setLevel(level);
 	//setMagic(magic);
 }
+
+Mage::Mage(string newName): Hero(newName) {
+
+}

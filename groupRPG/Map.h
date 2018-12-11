@@ -28,6 +28,7 @@ public:
 	void setItem(int x, int y, bool set); //set the item to be true or false based on set
 	void switchEnemy(int x, int y); //if there is an enemy, call to make isEnemy false, and vice versa
 	void switchItem(int x, int y); //reverses the value of isItem for a certain unit
+	void generateMap();
 
 
 	int getHeroX() { return heroX; };

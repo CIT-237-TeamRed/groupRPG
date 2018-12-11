@@ -10,6 +10,7 @@ public:
     void setQuantity(int quantity);
 	int getQuantity() { return quantity; }
     void use();
+    Ingestible();
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "Map.h"
+#include <stdlib.h>
 
 void Map::setDimensions(int mapWidth, int mapLength) { //set the dimention
 	width = mapWidth;
@@ -47,6 +48,26 @@ bool Map::isItemNearby(int x, int y) {
 		return true;
 	} else {
 		return false;
+	}
+}
+
+int randPercent() {
+	return rand() % (99 - 0 + 1) + 0;
+}
+
+void Map::generateMap() {
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if (randPercent() < 10 && j != heroX && i != heroY) // 10% chance to spawn an enemy if it is not where the hero currently is
+				setEnemy(j, i, true);
+			else
+				setEnemy(j, i, false); // set it to false otherwise to clear the rest of the map
+
+			if (randPercent() < 15) // 15% chance to spawn an item
+				setItem(j, i, true);
+			else
+				setItem(j, i, false); // set it to false otherwise to clear the rest of the map
+		}
 	}
 }
 

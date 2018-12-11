@@ -20,5 +20,6 @@ private:
 	int weaponDamage;
 public:
 	void setEnemy();
+	Silverman();
 };
 #endif

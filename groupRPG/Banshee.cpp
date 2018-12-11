@@ -10,7 +10,6 @@
 
 #include "Banshee.h"
 #include <iostream>
-#include <ctime>
 #include <string>
 
 void Banshee::setEnemy()
@@ -20,9 +19,6 @@ void Banshee::setEnemy()
 	setEnemyType("Banshee");
 	setHealth(13);
 	setHostile(hostile);
-	unsigned seed = time(0);
-
-	srand(seed);
 	string weaponArray[] = { "choke", "scream", "turn you to stone" };
 	int damageArray[] = { 4, 6, 8 };
 
@@ -38,3 +34,7 @@ void Banshee::setEnemy()
 
 }
 
+Banshee::Banshee(): Vicious() {
+	setEnemy();
+	setName("Banshee");
+}

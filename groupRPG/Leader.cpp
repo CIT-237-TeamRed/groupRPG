@@ -6,3 +6,7 @@ void Leader::abstract() {
 Leader::Leader(string name, int health, int lives): Hero(name, health, lives) {
 	
 }
+
+Leader::Leader(string name): Hero(name) {
+	
+}

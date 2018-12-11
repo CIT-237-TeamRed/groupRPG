@@ -16,7 +16,9 @@
 
 using namespace std;
 
-Benign::Benign() {}
+Benign::Benign(): Enemy() {
+	setName("Benign");
+}
 
 
 

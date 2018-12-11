@@ -16,11 +16,13 @@ void Weapon::setMagicDamage(int magicDamage){
 	}
 }
 
-Weapon::Weapon(int physicalDamage, int magicDamage) {
+Weapon::Weapon(int physicalDamage, int magicDamage): Tool() {
+	setName("Weapon");
 	setPhysicalDamage(physicalDamage);
 	setMagicDamage(magicDamage);
 }
-Weapon::Weapon() {
+Weapon::Weapon(): Tool() {
+	setName("Weapon");
 	setPhysicalDamage(0);
 	setMagicDamage(0);
 }

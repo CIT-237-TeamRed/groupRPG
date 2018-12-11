@@ -39,6 +39,7 @@ private:
 	string enemyType;
 	int health;                           // Might need to set to virtual
 	int weaponDamage;
+	string name = "Enemy";
 
 	string currentWeapon;
 
@@ -51,6 +52,9 @@ public:
 	void setEnemyType(string);           // this will set the enemy being benign or viscous (not sure how to do that)
 	void setWeaponDamage(int);
 	void setHostile(bool);
+
+	void setName(string newName);
+	string getName() { return name; }
 	
 	Enemy();
 	string getEnemyType();

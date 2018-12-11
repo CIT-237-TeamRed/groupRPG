@@ -40,6 +40,10 @@ void Enemy::setHealth(int newHealth)       // set the health of the enemy
 	health = newHealth;
 }
 
+void Enemy::setName(string newName) {
+	name = newName;
+}
+
 void Enemy::setEnemyType(string randoEnemy)     // Randomize which enemy will be used
 {
 	enemyType = randoEnemy;

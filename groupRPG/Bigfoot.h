@@ -21,5 +21,6 @@ private:
 
 public:
 	void setEnemy();
+	Bigfoot();
 };
 #endif

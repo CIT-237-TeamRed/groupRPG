@@ -11,7 +11,6 @@
 
 #include "Thief.h"
 #include <iostream>
-#include <ctime>
 
 using namespace std;
 
@@ -23,9 +22,6 @@ void Thief::setEnemy()
 	setEnemyType("Thief");
 	setHealth(7);
 	setHostile(hostile);
-	unsigned seed = time(0);
-
-	srand(seed);
 	string weaponArray[] = { "smack", "stick", "eyepoke" };   // Maybe set as private variables
 	int damageArray[] = { 2, 3, 4 };                          // Maybe set as private variables
 
@@ -39,6 +35,11 @@ void Thief::setEnemy()
 	else
 		(primeFunction(useElement)) ? setWeapon(weaponArray[2]), setWeaponDamage(damageArray[2]) : setWeapon(weaponArray[1]), setWeaponDamage(damageArray[1]);
 
+}
+
+Thief::Thief(): Benign() {
+	setEnemy();
+	setName("Thief");
 }
 
 // PREVIOUS CODING ATTEMPTS

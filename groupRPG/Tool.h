@@ -3,9 +3,9 @@
 #define TOOL_H
 #include "Item.h"
 class Tool : public Item{
-private:
-
+protected:
 public:
+	Tool();
     //virtual void use() = 0;
 };
 #endif

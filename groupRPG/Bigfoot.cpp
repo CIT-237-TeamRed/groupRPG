@@ -18,9 +18,6 @@ void Bigfoot::setEnemy()
 	setEnemyType("Bigfoot");
 	setHealth(13);
 	setHostile(hostile);
-	unsigned seed = time(0);
-
-	srand(seed);
 	string weaponArray[] = { "fist smash", "foot stomp", "bite" };
 	int damageArray[] = { 4, 6, 8 };
 
@@ -34,4 +31,9 @@ void Bigfoot::setEnemy()
 	else
 		(primeFunction(useElement)) ? setWeapon(weaponArray[2]), setWeaponDamage(damageArray[2]) : setWeapon(weaponArray[1]), setWeaponDamage(damageArray[1]);
 
+}
+
+Bigfoot::Bigfoot(): Vicious() {
+	setEnemy();
+	setName("Bigfoot");
 }

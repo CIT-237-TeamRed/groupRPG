@@ -11,7 +11,6 @@
 #include "Silverman.h"
 #include <string>
 #include <iostream>
-#include <ctime>
 
 using namespace std;
 
@@ -22,9 +21,6 @@ void Silverman::setEnemy()
 	setEnemyType("Silverman");
 	setHealth(7);
 	setHostile(hostile);
-	unsigned seed = time(0);
-
-	srand(seed);
 	string weaponArray[] = { "punch", "kick", "round house to the face" };
 	int damageArray[] = { 2, 3, 4 };
 
@@ -38,6 +34,11 @@ void Silverman::setEnemy()
 	else
 		(primeFunction(useElement)) ? setWeapon(weaponArray[2]), setWeaponDamage(damageArray[2]) : setWeapon(weaponArray[1]), setWeaponDamage(damageArray[1]);
 
+}
+
+Silverman::Silverman() : Benign() {
+	setEnemy();
+	setName("Silverman");
 }
 
 // PREVIOUS

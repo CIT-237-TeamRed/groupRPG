@@ -21,5 +21,6 @@ private:
 	// Mutators
 public:
 	void setEnemy();
+	Thief();
 };
 #endif

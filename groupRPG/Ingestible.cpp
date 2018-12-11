@@ -6,3 +6,7 @@ void Ingestible::setQuantity(int quantity) {
 	    this->quantity = quantity;
     }
 }
+
+Ingestible::Ingestible(): Item() {
+	setName("Ingestible");
+}

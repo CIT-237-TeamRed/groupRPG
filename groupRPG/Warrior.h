@@ -14,5 +14,6 @@ class Warrior : public Hero {
 		virtual void abstract();
 	public:
 		Warrior(string name, int health, int lives);
+		Warrior(string name);
 };
 #endif

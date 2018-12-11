@@ -23,7 +23,6 @@
 #include "Thief.h"
 #include "Tool.h"
 #include "Vicious.h"
-#include "Viscious.h"
 #include "Warrior.h"
 #include "Weapon.h"
 
@@ -32,22 +31,39 @@ using namespace std;
 Item* generateItem();
 Enemy* generateEnemy();
 string getCommand();
+bool getYN(string prompt);
 
 int main() {
 	Map board(10,10);
+	Hero* hero = nullptr;
 	// TODO: see below
 	// Check for a save file
 	// If there is one ask to load it
 	// Else start a new game
 	//
 	// loop until the player quits
+	cout << "1. Leader\n";
+	cout << "2. Warrior\n";
+	cout << "3. Mage\n";
+	cout << "Select your hero: ";
+	string input;
+	getline(cin, input);
+	while (input != "1" && input != "2" && input != "3") {
+		cout << "Please enter a valid selection: ";
+		getline(cin, input);
+	}
+	string name;
+	cout << "Enter your name: ";
+	getline(cin, name);
+	if (input == "1")
+		hero = new Leader(name);
+	else if (input == "2")
+		hero = new Warrior(name);
+	else if (input == "3")
+		hero = new Mage(name);
+	board.generateMap();
 	bool runGame = true;
-	// TODO: add a generate function to the map class
-	board.setEnemy(5, 5, true);
-	board.setItem(5, 6, true);
 	while (runGame) {
-		string command = getCommand();
-
 		//	if there is an enemy
 		if (board.getEnemyState(board.getHeroX(), board.getHeroY())) {
 		//		generate enemy
@@ -66,8 +82,10 @@ int main() {
 		// 		generate item
 			Item* item = generateItem();
 		// 		ask the user if they want to pick it up
-		// 		TODO: let the user pickup the item
-			cout << "Pickup " << item->getName() << "?\n";
+			if (getYN("Pickup " + item->getName() + "? ")) {
+				hero->addToInventory(*item);
+				board.setItem(board.getHeroX(), board.getHeroY(), false);	
+			}
 		}
 		
 		//	output what is nearby the hero
@@ -78,14 +96,17 @@ int main() {
 			cout << "There is an item nearby.\n";
 		}
 
+		//   output the player's position
 		cout << "You are at (" << board.getHeroX() << ", " << board.getHeroY() << ")\n";
+		cout << *hero << endl;
 
 		// 	prompt them for a command
+		string command = getCommand();
 		// 	run the appropriate function
-		// TODO: For some reason a second command has to be run before the player will actually move
 		if (command == "EXIT" || command == "QUIT")
 			runGame = false;
-		if (command.substr(0, 2) == "GO") {
+		else if (command.substr(0, 2) == "GO") {
+			// TODO: Game currently crashes if the player moves too far
 			command.erase(0, 3);
 			if (command == "UP" || command == "NORTH")
 				board.setHeroCoords(board.getHeroX(), board.getHeroY()+1);
@@ -103,6 +124,22 @@ int main() {
 				cout << setw(7) << left << "DOWN" << "SOUTH\n";
 				cout << setw(7) << left << "LEFT" << "WEST\n";
 			}
+		} else if (command == "INVENTORY") {
+			hero->printIventory();
+		} else if (command == "EQUIP") {
+			int numWeapons = hero->printWeapons();
+			cout << "Enter your selection: ";
+			int weaponChoice;
+			cin >> weaponChoice;
+			while (weaponChoice < 1 || weaponChoice > numWeapons || cin.fail()) {
+				if (cin.fail()) {
+					cin.ignore(1000, '\n');
+					cin.clear();
+				}
+				cout << "Enter your selection: ";
+				cin >> weaponChoice;
+			}
+			hero->setCurrentWeapon(weaponChoice);
 		} else {
 			cout << "Valid commands:\n";
 			cout << setw(10) << left << "HELP:" << "Prints out the available commands\n";
@@ -118,6 +155,11 @@ int main() {
 
 	} 
 	// Ask the user if they want to save the game before exiting
+	if (getYN("Do you want to save? "))
+		cout << "Saving is not yet implemented\n";
+
+	cout << "Now exiting the game...\n";
+	cout << "Goodbye\n";
 	return 0;
 }
 
@@ -137,7 +179,7 @@ Item* generateItem() {
 	Item* item = nullptr;
 	int toolNum = randBetween(0, 99);
 	bool isTool = false;
-	if (toolNum < 50) // 50% chance of it being a tool
+	if (toolNum < 80) // 80% chance of it being a tool
 		isTool = true;
 	if (isTool) { // if its a tool, then find if its a weapon
 		int weaponNum = randBetween(0, 99);
@@ -175,7 +217,7 @@ Item* generateItem() {
 		} else { // 30% chance of it being a tool
 			item = new Tool;
 		}
-	} else { // 50% chance of it being an ingestible
+	} else { // 20% chance of it being an ingestible
 		item = new Ingestible;
 	}
 	return item;
@@ -183,13 +225,13 @@ Item* generateItem() {
 
 Enemy* generateEnemy() {
 	Enemy* enemy = nullptr;
-	int visciousNum = randBetween(0, 99);
-	bool isViscious = false;
-	if (visciousNum < 20) // 20% chance of it being viscious
-		isViscious = true;
+	int viciousNum = randBetween(0, 99);
+	bool isVicious = false;
+	if (viciousNum < 20) // 20% chance of it being viscious
+		isVicious = true;
 
 	int classNum = randBetween(0, 99);
-	if (isViscious) { // if it is viscious find what type
+	if (isVicious) { // if it is viscious find what type
 		if (classNum < 30) { // 30% chance it is a banshee
 			enemy = new Banshee;
 		} else { // 70% chance it is a bigfoot
@@ -203,4 +245,20 @@ Enemy* generateEnemy() {
 		}
 	}
 	return enemy;
+}
+
+bool getYN(string prompt) {
+	string input;
+	cout << prompt;
+	getline(cin, input);
+	transform(input.begin(), input.end(),input.begin(), ::toupper); // This converts input to upper case
+	while (input != "Y" && input != "YES" && input != "N" && input != "NO") {
+		cout << "Please enter yes or no: ";
+		getline(cin, input);
+		transform(input.begin(), input.end(),input.begin(), ::toupper); // This converts input to upper case
+	}
+	if (input == "Y" || input == "YES")
+		return true;
+	else
+		return false;
 }

@@ -14,5 +14,6 @@ class Mage : public Hero {
 		virtual void abstract();
 	public:
 		Mage(string name, int health, int lives)/*: Hero(string name, double health, int level)*/;
+		Mage(string name);
 };
 #endif

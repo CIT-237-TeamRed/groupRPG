@@ -32,15 +32,18 @@ class Hero {
 		void setMaxHealth(int newMaxHealth);
 		void setLives(int newLives);
 		void setMaxLives(int newMaxLives);
-		void setCurrentWeapon(Weapon &newWeapon);
+		void setCurrentWeapon(Weapon *newWeapon);
+		void setCurrentWeapon(int weaponNum);
 
 		void addToInventory(Item &newItem);
 		void removeFromInventory(Item &item);
 
-		double getHealth() { return health; };
-		double getMaxHealth() { return maxHealth; };
+		int getHealth() { return health; };
+		int getMaxHealth() { return maxHealth; };
 		int getLives() { return lives; };
 		int getMaxLives() { return maxLives; };
+		void printIventory();
+		int printWeapons();
 		Weapon* getCurrentWeapon() { return currentWeapon; };
 		int getSizeOfInventory() { return numItems; };
 		int getMaxSizeOfInventory() { return maxItems; };
@@ -49,9 +52,9 @@ class Hero {
 		//void getInventory(Item rtnInventory[], int &rtnNumItems);
 		void attack(Enemy &enemy);
 
-
-		Hero(string name, double health, int lives);
-		Hero(string name, double health, double maxHealth, int lives, int maxLives);
+		Hero(string name);
+		Hero(string name, int health, int lives);
+		Hero(string name, int health, int maxHealth, int lives, int maxLives);
 		friend ostream &operator << (ostream &os, const Hero &hero);
 };
 #endif

@@ -15,5 +15,6 @@ class Leader: public Hero {
 		virtual void abstract();
 	public:
 		Leader(string name, int health, int lives);
+		Leader(string name);
 };
 #endif
