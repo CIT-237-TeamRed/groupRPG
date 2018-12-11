@@ -10,6 +10,8 @@ private:
 public:
 	void setName(string name);
 	string getName() { return name; }
+	bool operator== (Item right);
+	bool operator== (Item* right);
 	//virtual void use() = 0;
 };
 #endif
