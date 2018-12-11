@@ -56,6 +56,6 @@ int main() {
 
 	// Display the list
 	for (auto it = itemList.begin(); it != itemList.end(); ++it) {
-		cout << (*it)->getName() << endl;
+		cout << (*it)->getName() << " " << static_cast<Weapon *>(*it)->getPhysicalDamage() << endl;
 	}
 }
