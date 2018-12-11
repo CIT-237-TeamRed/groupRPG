@@ -1,31 +1,35 @@
 # Hero
-	| Access | name: type															| Validation
-	| ---    | --- 																| --- 
-	| -      | health: double														| Should be greater zero and less than maxHealth
-	| -      | maxHealth: double														| Should be greater than zero
-	| -      | lives: int															| Should be greater than zero and less than maxLives
-	| -      | maxLives: int															| Should be greater than zero
-	| -      | currentWeapon: Weapon													| Should be in possibleWeapons
-	| -      | inventory: Item[]														| 
-	| -      | numItems: int															| Should be greater than zero and less than maxItems
-	| -      | maxItems: int															| Should be greater than zero
+	| Access | name: type															    | Notes                                                                                                                           | Validation
+	| ---    | --- 																        | ---                                                                                                                             | ---
+	| -      | health: double														    | How much damage the hero can take                                                                                               | Should be greater zero and less than maxHealth, less then zero then they lose a life
+	| -      | maxHealth: double														| The maximum health the hero can have                                                                                            | Should be greater than zero
+	| -      | lives: int															    | The number of times a hero can die and then respawn                                                                             | Should be greater than zero and less than maxLives
+	| -      | maxLives: int															| The maximum number of lives a hero can have                                                                                     | Should be greater than zero
+	| -      | currentWeapon: Weapon*													| The weapon the hero current has equipped, will add to the corresponding damage                                                  | Should be in possibleWeapons
+	| -      | inventory: Item[]														| This is an array that stores items for the hero                                                                                 |
+	| -      | numItems: int															| The current number of items the hero has                                                                                        | Should be greater than zero and less than maxItems
+	| -      | maxItems: int															| The maximum number of items the hero can have                                                                                   | Should be greater than zero
+	| -      | energy: int                                                              | Stores the amount of energy the hero has, it will go down with each attack, and naturally regen                                 | Less then or equal to 0 means they can't attack
+	| -      | physicalDamage: int                                                      | The amount of physical damage the hero does, defaults to 1                                                                      | 
+	| -      | magicDamage: int                                                         | The amount of magic damage the hero does, defaults to 1                                                                         | 
 	| 
-	| +      | getHealth(): double													| 
-	| +      | getMaxHealth(): double													| 
-	| +      | setHealth(newHealth: double): void										| newHealth must be greater than zero and less than maxHealth
-	| +      | getLives(): double														|
-	| +      | getMaxLives(): int														|
-	| +      | setLives(newLives: int): int												| newLives must be greather than zero and less than maxLives
-	| +      | getCurrentWeapon(): Weapon												|
-	| +      | setCurrentWeapon(newWeapon: Weapon): void									| Should be both in possibleWeapons and in the inventory
+	| +      | getHealth(): double													    | Returns the hero's current health                                                                                               |
+	| +      | getMaxHealth(): double													| Returns the hero's max health                                                                                                   |
+	| +      | setHealth(newHealth: double): void										| Sets the hero's health, if less then zero they lose a life and is set to maxHealth, if more than maxHealth then error is thrown | newHealth must be greater than zero and less than maxHealth
+	| +      | getLives(): int														    | Returns the hero's number of current lives                                                                                      |
+	| +      | getMaxLives(): int														| Returns the maxmium numbre of lives the hero can have                                                                           |
+	| +      | setLives(newLives: int): int												| Sets the hero's lives, is less then zero or more then maxLives, error is thrown                                                 | newLives must be greather than zero and less than maxLives
+	| +      | getCurrentWeapon(): Weapon												| Returns the currently selected weapon                                                                                           |
+	| +      | setCurrentWeapon(newWeapon: Weapon): void						        | Sets the hero's current weapon, if it is not in the inventory then it won't be set                                              | Should be both in possibleWeapons and in the inventory
 	| 
-	| +      | addToInventory(newItem: Item): void										| 
-	| +      | removeFromInventory(item: Item): void										| Should be something in the inventory
-	| +      | getInventory(rtnInventory: Item[], rtnNumItems: int*): void					| 
-	| +      | getSizeOfInventory(): int												|
-	| +      | getMaxSizeOfInventory(): int												| 
-	| +      | Hero(health: double, lives: int)											| health must be > 0 and < maxHealth, same for lives
-	| +      | Hero(health: double, maxHealth: double, lives: int, maxLives: int)				| health must be > 0 and < maxHealth, same for lives, maxHealth and maxLives must be greater than 0
+	| +      | addToInventory(newItem: Item): void										| Adds the item to the hero's inventory                                                                                           |
+	| +      | removeFromInventory(item: Item): void									| Removes an item from the iventory                                                                                               | Should be something in the inventory 
+	| +      | getSizeOfInventory(): int												| Returns the hero's current number of items                                                                                      | 
+	| +      | getMaxSizeOfInventory(): int												| Returns the max number of items                                                                                                 |  
+	| +      | getPhysicalDamage(): int                                                 | Returns the physical damage                                                                                                     |
+	| +      | getMagicDamage(): int                                                    | Returns the magaic damage                                                                                                       |
+	| +      | Hero(health: double, lives: int)											| Constructs a hero with health and lives                                                                                         | health must be > 0 and < maxHealth, same for lives
+	| +      | Hero(health: double, maxHealth: double, lives: int, maxLives: int)		| Constructs a hero with health, lives, maxHealth, and maxLives                                                                   | health must be > 0 and < maxHealth, same for lives, maxHealth and maxLives must be greater than 0
 
 ## Subclass Mage
 

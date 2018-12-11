@@ -1,0 +1,22 @@
+* Update UMLs and documentation
+* Create more and better comments in our code
+* Finish testing all of our classes
+* Make sure the abstract classes are actually abstract
+* Create the actual game logic
+    * Functions for spawning enemies and treasures on the map
+    * Make a fighting system
+    * Make saving and loading work
+    * Tell the user what's around
+    * Make a system for the user to input commands
+        * Movements
+        * Fighting
+        * Saving/loading
+        * Inventory management
+        * Pickup items
+
+    * Make a system to generate monsters and loot
+
+* Make sure the game has a little bit of balance to it
+* Double check the requirements of the project to make sure we met all of them
+
+* Think about making the player's inventory a linked list or vector
