@@ -9,5 +9,5 @@ void Viscious::setSubEnemy()                     // will need to return an objec
 {
 	int useElement = randomize(0, 100);
 
-	(useElement % 2 == 0 ? subEnemiesArray[0] : subEnemiesArray[1]);
+	//(useElement % 2 == 0 ? subEnemiesArray[0] : subEnemiesArray[1]);
 }

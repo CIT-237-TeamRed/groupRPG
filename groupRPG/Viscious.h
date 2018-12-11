@@ -14,7 +14,7 @@
 class Viscious : Enemy
 {
 private:
-	string subEnemiesArray[] = { "Banshee", "Bigfoot" };   // Need to make an array that holds objects
+	string subEnemiesArray[2] = { "Banshee", "Bigfoot" };   // Need to make an array that holds objects
 
 public:
 	void setSubEnemy();
