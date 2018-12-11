@@ -8,6 +8,7 @@
 #include "Weapon.h"
 #include "Enemy.h"
 #include <iostream>
+#include <list>
 class Item;
 class Weapon;
 class Hero {
@@ -18,7 +19,8 @@ class Hero {
 		int lives;
 		int maxLives = 10;
 		Weapon* currentWeapon = nullptr;
-		Item **inventory = nullptr;
+		//Item **inventory = nullptr;
+		list<Item *> inventory;
 		int numItems = 0;
 		int maxItems = 30;
 		int energy;

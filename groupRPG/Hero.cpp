@@ -3,6 +3,7 @@
 
 #include "Hero.h"
 #include "Item.h"
+#include <algorithm>
 
 void Hero::setHealth(int newHealth) {
 	if (newHealth > 0 && newHealth <= getMaxHealth()) {
@@ -37,25 +38,30 @@ void Hero::setMaxLives(int newMaxLives) {
 }
 
 void Hero::setCurrentWeapon(Weapon &newWeapon) {
-	for (int i = 0; i < numItems; i++) {
-		//if (inventory[i] == newWeapon)
+	//if (find(inventory.begin(), inventory.end(), newWeapon) != inventory.end()) {
 			currentWeapon = &newWeapon;
 			physicalDamage += newWeapon.getPhysicalDamage();
 			magicDamage += newWeapon.getMagicDamage();
-	}
+	//}
 }
 
 
 void Hero::addToInventory(Item &newItem) {
-	if (numItems + 1 < maxItems) {
-		inventory[numItems] = &newItem;
-		numItems++;
-	}
+	inventory.push_back(&newItem);
+	numItems++;
+	//if (numItems + 1 < maxItems) {
+	//	inventory[numItems] = &newItem;
+	//	numItems++;
+	//}
 }
 
 void Hero::removeFromInventory(Item &item) {
-	// Not yet implemented
+	//if (find(inventory.begin(), inventory.end(), item) != inventory.end()) {
+		inventory.remove(&item);
+		numItems--;
+	//}
 }
+
 /*
 void Hero::getInventory(Item rtnInventory[], int &rtnNumItems) {
 	rtnInventory = inventory;
@@ -71,7 +77,7 @@ Hero::Hero(string newName, double health, int lives) {
 	name = newName;
 	setHealth(health);
 	setLives(lives);
-	inventory = new Item*[maxItems];
+	//inventory = new Item*[maxItems];
 }
 
 Hero::Hero(string newName, double health, double maxHealth, int lives, int maxLives) {
@@ -80,7 +86,7 @@ Hero::Hero(string newName, double health, double maxHealth, int lives, int maxLi
 	setMaxLives(maxLives);
 	setHealth(health);
 	setLives(lives);
-	inventory = new Item*[maxItems];
+	//inventory = new Item*[maxItems];
 }
 
 ostream &operator << (ostream &os, const Hero &hero) {
