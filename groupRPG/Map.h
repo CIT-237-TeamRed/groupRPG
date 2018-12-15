@@ -2,6 +2,8 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <iostream>
+
 class Map {
 public:
 	enum Terrain { LAND, WATER }; //the types of terrain a unit can be 
@@ -29,6 +31,8 @@ public:
 	void switchEnemy(int x, int y); //if there is an enemy, call to make isEnemy false, and vice versa
 	void switchItem(int x, int y); //reverses the value of isItem for a certain unit
 	void generateMap();
+	void save(std::ostream &output);
+	void load(std::istream &input);
 
 
 	int getHeroX() { return heroX; };

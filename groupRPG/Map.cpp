@@ -1,5 +1,8 @@
 #include "Map.h"
 #include <stdlib.h>
+#include <iostream>
+
+using namespace std;
 
 void Map::setDimensions(int mapWidth, int mapLength) { //set the dimention
 	width = mapWidth;
@@ -7,8 +10,10 @@ void Map::setDimensions(int mapWidth, int mapLength) { //set the dimention
 }
 
 void Map::setHeroCoords(int x, int y){ //set the hero coordinates of (x,y)
-	heroX = x;
-	heroY = y;
+	if (x > 0 && x < width)
+		heroX = x;
+	if (y > 0 && y < length)
+		heroY = y;
 }
 
 void Map::setTerrain(int x, int y, Terrain mapTerrain) { //set terrain type of specific unit (x,y)
@@ -33,22 +38,88 @@ void Map::switchItem(int x, int y) { //reverses value if isItem for a unit
 
 bool Map::isEnemyNearby(int x, int y){
 	//check the squares around (x,y) for enemy
-	if (grid[x -1][y - 1].isEnemy == true || grid[x][y - 1].isEnemy == true || grid[x+ 1][y - 1].isEnemy == true || grid[x + 1][y].isEnemy == true 
-		|| grid[x + 1][y + 1].isEnemy == true || grid[x][y + 1].isEnemy == true || grid[x - 1 ][y + 1].isEnemy == true || grid[x - 1][y].isEnemy == true){
-		return true;
-	} else {
-		return false;
+	if (x > 0 && y > 0) {
+		if (grid[x - 1][y - 1].isEnemy)
+			return true;
 	}
+	if (y > 0) {
+		if (grid[x][y - 1].isEnemy)
+			return true;
+	}
+	if (x < width && y > 0) {
+		if (grid[x + 1][y - 1].isEnemy)
+			return true;
+	}
+	if (x < width) {
+		if (grid[x + 1][y].isEnemy)
+			return true;
+	}
+	if (x < width && y < length) {
+		if (grid[x + 1][y + 1].isEnemy)
+			return true;
+	}
+	if (y < length) {
+		if (grid[x][y + 1].isEnemy)
+			return true;
+	}
+	if (x > 0 && y < length) {
+		if (grid[x - 1][y + 1].isEnemy)
+			return true;
+	}
+	if (x > 0) {
+		if (grid[x - 1][y].isEnemy)
+			return true;
+	}
+	return false;
+//	if (grid[x -1][y - 1].isEnemy == true || grid[x][y - 1].isEnemy == true || grid[x+ 1][y - 1].isEnemy == true || grid[x + 1][y].isEnemy == true 
+//		|| grid[x + 1][y + 1].isEnemy == true || grid[x][y + 1].isEnemy == true || grid[x - 1 ][y + 1].isEnemy == true || grid[x - 1][y].isEnemy == true){
+//		return true;
+//	} else {
+//		return false;
+//	}
 }
 
 bool Map::isItemNearby(int x, int y) {
 	//check the squares around (x,y) item
-	if (grid[x - 1][y - 1].isItem == true || grid[x][y - 1].isItem == true || grid[x + 1][y - 1].isItem == true || grid[x + 1][y].isItem == true
-		|| grid[x + 1][y + 1].isItem == true || grid[x][y + 1].isItem == true || grid[x - 1][y + 1].isItem == true || grid[x - 1][y].isItem == true) {
-		return true;
-	} else {
-		return false;
+	if (x > 0 && y > 0) {
+		if (grid[x - 1][y - 1].isItem)
+			return true;
 	}
+	if (y > 0) {
+		if (grid[x][y - 1].isItem)
+			return true;
+	}
+	if (x < width && y > 0) {
+		if (grid[x + 1][y - 1].isItem)
+			return true;
+	}
+	if (x < width) {
+		if (grid[x + 1][y].isItem)
+			return true;
+	}
+	if (x < width && y < length) {
+		if (grid[x + 1][y + 1].isItem)
+			return true;
+	}
+	if (y < length) {
+		if (grid[x][y + 1].isItem)
+			return true;
+	}
+	if (x > 0 && y < length) {
+		if (grid[x - 1][y + 1].isItem)
+			return true;
+	}
+	if (x > 0) {
+		if (grid[x - 1][y].isItem)
+			return true;
+	}
+	return false;
+//	if (grid[x - 1][y - 1].isItem == true || grid[x][y - 1].isItem == true || grid[x + 1][y - 1].isItem == true || grid[x + 1][y].isItem == true
+//		|| grid[x + 1][y + 1].isItem == true || grid[x][y + 1].isItem == true || grid[x - 1][y + 1].isItem == true || grid[x - 1][y].isItem == true) {
+//		return true;
+//	} else {
+//		return false;
+//	}
 }
 
 int randPercent() {
@@ -67,6 +138,58 @@ void Map::generateMap() {
 				setItem(j, i, true);
 			else
 				setItem(j, i, false); // set it to false otherwise to clear the rest of the map
+		}
+	}
+}
+
+void Map::save(ostream &output) {
+	Map::Terrain terrain;
+	bool enemyState;
+	bool itemState;
+
+	output.write(reinterpret_cast<char *>(&width), sizeof(int));
+	output.write(reinterpret_cast<char *>(&length), sizeof(int));
+	output.write(reinterpret_cast<char *>(&heroX), sizeof(int));
+	output.write(reinterpret_cast<char *>(&heroY), sizeof(int));
+	for (int l = 0; l < length; l++) {
+		for (int w = 0; w < width; w++) {
+			terrain = getTerrain(w, l);
+			enemyState = getEnemyState(w, l);
+			itemState = getItemState(w, l);
+
+			output.write(reinterpret_cast<char *>(&terrain), sizeof(Map::Terrain));
+			output.write(reinterpret_cast<char *>(&enemyState), sizeof(bool));
+			output.write(reinterpret_cast<char *>(&itemState), sizeof(bool));
+		}
+	}
+}
+
+void Map::load(istream &input) {
+	int width = 0;
+	input.read(reinterpret_cast<char *>(&width), sizeof(int));
+	int length = 0;
+	input.read(reinterpret_cast<char *>(&length), sizeof(int));
+
+	setDimensions(width, length);
+
+	int x = 0;
+	int y = 0;
+	input.read(reinterpret_cast<char *>(&x), sizeof(int));
+	input.read(reinterpret_cast<char *>(&y), sizeof(int));
+	setHeroCoords(x, y);
+	
+	bool enemyState = false;
+	bool itemState = false;
+	Map::Terrain terrain = Map::LAND;
+	for (int l = 0; l < length; l++) {
+		for (int w = 0; w < width; w++) {
+			input.read(reinterpret_cast<char *>(&terrain), sizeof(Map::Terrain));
+			input.read(reinterpret_cast<char *>(&enemyState), sizeof(bool));
+			input.read(reinterpret_cast<char *>(&itemState), sizeof(bool));
+
+			setTerrain(w, l, terrain);
+			setEnemy(w, l, enemyState);
+			setItem(w, l, itemState);
 		}
 	}
 }

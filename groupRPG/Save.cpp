@@ -3,7 +3,7 @@
 // This file creates a map, writes it to a binary file, and then loads that into a new map
 
 #include <iostream>
-#include "MapHeader.h"
+#include "Map.h"
 #include <fstream>
 
 using namespace std;

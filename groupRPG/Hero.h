@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include <iostream>
 #include <list>
+#include <vector>
 class Item;
 class Weapon;
 class Hero {
@@ -20,7 +21,8 @@ class Hero {
 		int maxLives = 10;
 		Weapon* currentWeapon = nullptr;
 		//Item **inventory = nullptr;
-		list<Item *> inventory;
+		//list<Item *> inventory;
+		vector<Item *> inventory;
 		int numItems = 0;
 		int maxItems = 30;
 		int energy;
@@ -51,6 +53,8 @@ class Hero {
 		int getMagicDamage() { return magicDamage; };
 		//void getInventory(Item rtnInventory[], int &rtnNumItems);
 		void attack(Enemy &enemy);
+		void save(ostream &output);
+		void load(istream &input);
 
 		Hero(string name);
 		Hero(string name, int health, int lives);

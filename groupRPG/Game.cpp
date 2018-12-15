@@ -1,3 +1,9 @@
+// Game.cpp
+// This is where all the game logic is stored
+//
+// Jericho Keyne
+// Daniel Richardson
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -36,32 +42,63 @@ bool getYN(string prompt);
 int main() {
 	Map board(10,10);
 	Hero* hero = nullptr;
-	// TODO: see below
-	// Check for a save file
-	// If there is one ask to load it
-	// Else start a new game
-	//
-	// loop until the player quits
-	cout << "1. Leader\n";
-	cout << "2. Warrior\n";
-	cout << "3. Mage\n";
-	cout << "Select your hero: ";
-	string input;
-	getline(cin, input);
-	while (input != "1" && input != "2" && input != "3") {
-		cout << "Please enter a valid selection: ";
-		getline(cin, input);
+
+	const string MAP_SAVE_NAME = "map.dat";
+	const string HERO_SAVE_NAME = "hero.dat";
+	ifstream mapSave(MAP_SAVE_NAME, ios::binary);
+	ifstream heroSave(HERO_SAVE_NAME, ios::binary);
+	bool startNewGame = false;
+	if (mapSave.good() && heroSave.good()) {
+		if (getYN("Do you want to load " + MAP_SAVE_NAME + " and " + HERO_SAVE_NAME + "? ")) {
+			startNewGame = false;
+			cout << "Loading save file...\n";
+			board.load(mapSave);
+			try {
+			hero->load(heroSave);
+			} catch (const std::exception &e) {
+				cout << "Loading failed" << endl;
+				std::cerr << e.what();
+			}
+					
+		} else {
+			if (!getYN("Do you want to start a new game? "))
+				return 0;
+			startNewGame = true;
+		}
+	} else {
+		startNewGame = true;
 	}
-	string name;
-	cout << "Enter your name: ";
-	getline(cin, name);
-	if (input == "1")
-		hero = new Leader(name);
-	else if (input == "2")
-		hero = new Warrior(name);
-	else if (input == "3")
-		hero = new Mage(name);
-	board.generateMap();
+	ofstream mapSaveOut(MAP_SAVE_NAME, ios::binary);
+	ofstream heroSaveOut(HERO_SAVE_NAME, ios::binary);
+
+	if (startNewGame) {
+		// TODO: see below
+		// Check for a save file
+		// If there is one ask to load it
+		// Else start a new game
+		//
+		// loop until the player quits
+		cout << "1. Leader\n";
+		cout << "2. Warrior\n";
+		cout << "3. Mage\n";
+		cout << "Select your hero: ";
+		string input;
+		getline(cin, input);
+		while (input != "1" && input != "2" && input != "3") {
+			cout << "Please enter a valid selection: ";
+			getline(cin, input);
+		}
+		string name;
+		cout << "Enter your name: ";
+		getline(cin, name);
+		if (input == "1")
+			hero = new Leader(name);
+		else if (input == "2")
+			hero = new Warrior(name);
+		else if (input == "3")
+			hero = new Mage(name);
+		board.generateMap();
+	}
 	bool runGame = true;
 	while (runGame) {
 		//	if there is an enemy
@@ -105,17 +142,22 @@ int main() {
 		// 	run the appropriate function
 		if (command == "EXIT" || command == "QUIT")
 			runGame = false;
-		else if (command.substr(0, 2) == "GO") {
-			// TODO: Game currently crashes if the player moves too far
+		else if (command == "SAVE") {
+			cout << "Saving...\n";
+			board.save(mapSaveOut);	
+			hero->save(heroSaveOut);
+			cout << "Game saved\n";
+		} else if (command.substr(0, 2) == "GO") {
+			// TODO: Game currently crashes if the player moves too far to the right
 			command.erase(0, 3);
 			if (command == "UP" || command == "NORTH")
 				board.setHeroCoords(board.getHeroX(), board.getHeroY()+1);
 			else if (command == "DOWN" || command == "SOUTH")
 				board.setHeroCoords(board.getHeroX(), board.getHeroY()-1);
 			else if (command == "LEFT" || command == "WEST")
-				board.setHeroCoords(board.getHeroX()+1, board.getHeroY());
-			else if (command == "RIGHT" || command == "EAST")
 				board.setHeroCoords(board.getHeroX()-1, board.getHeroY());
+			else if (command == "RIGHT" || command == "EAST")
+				board.setHeroCoords(board.getHeroX()+1, board.getHeroY());
 			else {
 				cout << command << " is an invalid direction\n";
 				cout << "Valid directions:\n";
@@ -149,16 +191,26 @@ int main() {
 				cout << setw(7) << left << "\tRIGHT" << "EAST\n";
 				cout << setw(7) << left << "\tDOWN" << "SOUTH\n";
 				cout << setw(7) << left << "\tLEFT" << "WEST\n";
+			cout << setw(10) << left << "EQUIP:" << "Prints your weapons and lets you equip one\n";
+			cout << setw(10) << left << "INVENTORY:" << "Prints out your inventory\n";
 			cout << setw(10) << left << "EXIT:" << "Quits the game\n";
 			cout << setw(10) << left << "QUIT:" << "Quits the game\n";
 		}
 
 	} 
 	// Ask the user if they want to save the game before exiting
-	if (getYN("Do you want to save? "))
-		cout << "Saving is not yet implemented\n";
+	if (getYN("Do you want to save? ")) {
+		cout << "Saving...\n";
+		board.save(mapSaveOut);	
+		hero->save(heroSaveOut);
+		cout << "Game saved\n";
+	}
 
 	cout << "Now exiting the game...\n";
+	mapSave.close();
+	heroSave.close();
+	mapSaveOut.close();
+	heroSaveOut.close();
 	cout << "Goodbye\n";
 	return 0;
 }
@@ -225,24 +277,17 @@ Item* generateItem() {
 
 Enemy* generateEnemy() {
 	Enemy* enemy = nullptr;
-	int viciousNum = randBetween(0, 99);
-	bool isVicious = false;
-	if (viciousNum < 20) // 20% chance of it being viscious
-		isVicious = true;
-
 	int classNum = randBetween(0, 99);
-	if (isVicious) { // if it is viscious find what type
-		if (classNum < 30) { // 30% chance it is a banshee
-			enemy = new Banshee;
-		} else { // 70% chance it is a bigfoot
-			enemy = new Bigfoot;
-		}
-	} else { // 80% chance it is benign, then find what type
-		if (classNum < 30) { // 30% chance it is a silverman
-			enemy = new Silverman;
-		} else { // 70% chance it is a thief
-			enemy = new Thief;
-		}
+	if (classNum < 30) { // 30% chance of being vicious
+		if (classNum % 2 == 0)
+			return new Banshee; // 50% chance of banshee
+		else
+			return new Bigfoot; // 50% chance of bigfoot
+	} else { // 30% chance of being benign
+		if (classNum % 2 == 0)
+			return new Thief; // 50% chance of thief
+		else
+			return new Silverman; // 50% chance of silverman
 	}
 	return enemy;
 }
