@@ -1,12 +1,24 @@
 // Daniel Richardson
-// Nov. 8, 2018
+// Nov. 8 - Dec. 15
 
-/*       Silverman          *
- ****************************
- *   -int weaponDamage      *
- ****************************
- *   +void setEnemy()       *
- ****************************/
+/*      Silverman          *
+****************************
+*   -int useWeapon         *
+*   -string SILVERMAN_NAME *
+*   -int SILVERMAN_HEALTH  *
+*   -string WEAPON1        *
+*   -string WEAPON2        *
+*   -string WEAPON3        *
+*   -int WEAPON1_DAMAGE    *
+*   -int WEAPON2_DAMAGE    *
+*   -int WEAPON3_DAMAGE    *
+*   -string weaponArray[]  *
+*   -int damageArray[]     *
+****************************
+*   + Silverman()          *
+*   +void setEnemy()       *
+*   +void print()          *
+****************************/
 
 #pragma once
 #ifndef Silverman_H
@@ -17,9 +29,25 @@
 class Silverman : public Benign
 {
 private:
-	int weaponDamage;
+	int useWeapon; // to hold random number
+
+	const string SILVERMAN_NAME = "Silverman";
+	const int SILVERMAN_HEALTH = 7;
+
+	const string WEAPON1 = "a punch";
+	const string WEAPON2 = "a kick";
+	const string WEAPON3 = "a round house to the face";
+
+	const int WEAPON1_DAMAGE = 2;
+	const int WEAPON2_DAMAGE = 3;
+	const int WEAPON3_DAMAGE = 4;
+
+	// Arrays to hold the weapon names and damage
+	string weaponArray[3];
+	int damageArray[3];
 public:
-	void setEnemy();
 	Silverman();
+	void setEnemy();
+	void print();
 };
 #endif

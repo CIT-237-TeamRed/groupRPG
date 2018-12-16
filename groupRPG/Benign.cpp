@@ -1,11 +1,15 @@
 // Daniel Richardson
-// Nov. 8
+// Nov. 8 - Dec. 15
 
 /*        Benign           *
 ****************************
-*  string subEnemiesArray  *
+*   string characteristic  *
 ****************************
-*   void setSubEnemy       *
+*      bool hostile        *
+****************************
+*       Benign()           *
+*   virtual void setEnemy()*
+*   virtual void print()   *
 ****************************/
 
 
@@ -16,30 +20,10 @@
 
 using namespace std;
 
-Benign::Benign(): Enemy() {
-	setName("Benign");
-}
-
-
-
-// PREVIOUS CODE
-/*{
-	//int useElement = 1; //randomize(0, 100);
-
-	//(useElement  == 1 ? arr[0] : arr[0]);
-
-//	Thief().setEnemy();
-}
-//void Benign::setSubEnemy()                     // will need to return an object
+Benign::Benign() 
 {
-	int useElement = randomize(0, 100);
+	setCharacteristic(characteristic);
+};
 
-	(useElement % 2 == 0 ? arr[0] : arr[1]);
-}*/
-
-/*bool Benign::isHostile()
-{
-	return hostile;
-}*/
 
 
