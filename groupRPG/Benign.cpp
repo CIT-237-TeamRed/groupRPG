@@ -20,7 +20,6 @@
 using namespace std;
 
 Benign::Benign(): Enemy() {
-	setName("Benign");
 	setCharacteristic(characteristic);
 }
 

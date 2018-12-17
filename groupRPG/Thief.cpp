@@ -58,7 +58,6 @@ void Thief::setEnemy()
 
 Thief::Thief(): Benign() {
 	setEnemy();
-	setName("Thief");
 }
 
 void Thief::print()

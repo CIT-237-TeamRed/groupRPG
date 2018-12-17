@@ -54,7 +54,6 @@ void Banshee::setEnemy()
 
 Banshee::Banshee(): Vicious() {
 	setEnemy();
-	setName("Banshee");
 }
 
 void Banshee::print()

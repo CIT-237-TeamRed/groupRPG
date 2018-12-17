@@ -49,5 +49,4 @@ void Silverman::print()
 
 Silverman::Silverman() : Benign() {
 	setEnemy();
-	setName("Silverman");
 }
