@@ -14,11 +14,11 @@ private:
 		Terrain terrain = LAND; //every unit is land by default
 	};
 
-	int heroX = 0;
-	int heroY = 0;
+	int heroX = 0; //hero's x coord
+	int heroY = 0; //hero's y coord
 
 	int width; //length and width of map
-	int length;
+	int length; 
 
 	unit ** grid; //the structure of the map is a 2 dimensional array of 'units'
 
@@ -30,9 +30,9 @@ public:
 	void setItem(int x, int y, bool set); //set the item to be true or false based on set
 	void switchEnemy(int x, int y); //if there is an enemy, call to make isEnemy false, and vice versa
 	void switchItem(int x, int y); //reverses the value of isItem for a certain unit
-	void generateMap();
-	void save(std::ostream &output);
-	void load(std::istream &input);
+	void generateMap(); //generates a map with randomly placed enemies and items 
+	void save(std::ostream &output); //saves map state to binary file
+	void load(std::istream &input); //loads map stat from binary file
 
 
 	int getHeroX() { return heroX; };
@@ -47,6 +47,6 @@ public:
 	
 
     Map(int width, int length); //constructs map of width and length
-	~Map();
+	~Map(); //deconstructs the map array
 };
 #endif

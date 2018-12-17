@@ -1,3 +1,6 @@
+// Samuel Silverman
+// Tool class
+
 #pragma once
 #ifndef TOOL_H
 #define TOOL_H
@@ -5,7 +8,6 @@
 class Tool : public Item{
 protected:
 public:
-	Tool();
-    //virtual void use() = 0;
+	Tool(); // Constructor
 };
 #endif

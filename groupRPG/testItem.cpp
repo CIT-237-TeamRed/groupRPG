@@ -1,3 +1,6 @@
+// Samuel Silverman
+// Item Test
+
 #include <iostream>
 #include "Item.h"
 #include "Ingestible.h"
@@ -5,7 +8,6 @@
 #include "Weapon.h"
 #include "Physical.h"
 #include "Magic.h"
-// Include all .h's present within Item folder
 
 using namespace std;
 

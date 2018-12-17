@@ -1,11 +1,23 @@
 // Daniel Richardson
-// Nov. 8
+// Nov. 8 - Dec. 15
 
 /*      Bigfoot            *
 ****************************
-*   -int weaponDamage      *
+*   -int useWeapon         *
+*   -string BIGFOOT_NAME   *
+*   -int BIGFOOT_HEALTH    *
+*   -string WEAPON1        *
+*   -string WEAPON2        *
+*   -string WEAPON3        *
+*   -int WEAPON1_DAMAGE    *
+*   -int WEAPON2_DAMAGE    *
+*   -int WEAPON3_DAMAGE    *
+*   -string weaponArray[]  *
+*   -int damageArray[]     *
 ****************************
+*   + Bigfoot()            *
 *   +void setEnemy()       *
+*   +void print()          *
 ****************************/
 
 #pragma once
@@ -17,10 +29,27 @@
 class Bigfoot : public Vicious
 {
 private:
-	int weaponDamage;
+
+	int useWeapon;   // variable to hold a random number
+
+	const string BANSHEE_NAME = "Bigfoot";
+	const int BANSHEE_HEALTH = 13;
+
+	const string WEAPON1 = "a fist smash";
+	const string WEAPON2 = "a big foot stomp";
+	const string WEAPON3 = "a skull crushing bite";
+
+	const int WEAPON1_DAMAGE = 4;
+	const int WEAPON2_DAMAGE = 6;
+	const int WEAPON3_DAMAGE = 8;
+
+	// Arrays to hold weapon names and correspond with the damage
+	string weaponArray[3];
+	int damageArray[3];
 
 public:
-	void setEnemy();
 	Bigfoot();
+	void setEnemy();
+	void print();
 };
 #endif

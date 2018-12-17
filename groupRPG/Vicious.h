@@ -1,5 +1,5 @@
 // Daniel Richardson
-// Nov. 8, 
+// Nov. 8 - Dec. 15
 
 #pragma once
 #ifndef VICIOUS_H
@@ -8,18 +8,29 @@
 
 /*        Vicious          *
 ****************************
+*   string characteristic  *
+****************************
 *      bool hostile        *
 ****************************
-*       Vicious)           *
-*   virtual void setEnemy  *
+*       Vicious()          *
+*  virtual void setEnemy() *
+*  virtual void print()    *
 ****************************/
 
 class Vicious : public Enemy
 {
-public:
-	Vicious();             // may not be necessary
-	bool hostile = true;   // ??? Maybe put in private and make protected
+private:
+	string characteristic = "vicious";
 
+protected:
+	bool hostile = true;   // protected because Bigfoot and Banshee need access
+
+public:
+	Vicious();
+
+	// Falling through to Banshee.setEnemy() and Bigfoot.setEnemy()
 	virtual void setEnemy() = 0;
+	virtual void print() = 0;
+
 };
 #endif

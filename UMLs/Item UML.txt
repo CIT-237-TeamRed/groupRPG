@@ -1,0 +1,66 @@
+--------------------------|
+ITEM                      |
+--------------------------|
+#itemName: string
+
++setName(string name): void
++getName():string
++operator== (Item* right): bool
++<<virtual>>abstract():void
+
+--------------------------|
+INGESTIBLE                |
+--------------------------|
+-quantity:int
+
++setQuantity(quantity:int):void
++getQuantity():int
++Ingestible();
+
+--------------------------|
+TOOL                      |
+--------------------------|
++Tool()
+
+--------------------------|
+WEAPON                    |
+--------------------------|
+#physicalDamage:int
+#magicDamage:int
+
++setPhysicalDamage(physicalDamage:int)void;
++getPhysicalDamage():int
++setMagicDamage(physicalDamage:int):void
++getMagicDamage():int
++<<virtual>>abstract():void
+
++Weapon(physicalDamage:int, magicDamage:int)
++Weapon()
+
+--------------------------|
+MAGIC                     |
+--------------------------|
+-Type type;
+
++Type:enum
+    DIRT
+    FIRE
+    ELECTRICITY
+    WATER
++setType(Type type):void
++getType():Type
++Magic(Type type);
+
+--------------------------|
+PHYSICAL                  |
+--------------------------|
+-Type type;
+
++Type:enum 
+    STICK
+    SWORD
+    KNUCKLES
+    GUN
++setType(Type type):void
++getType():Type
++Physical(Type type);

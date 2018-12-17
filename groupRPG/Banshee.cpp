@@ -1,40 +1,55 @@
 // Daniel Richardson
-// Nov. 8
+// Nov. 8 - Dec 15
 
 /*      Banshee            *
 ****************************
-*   -int weaponDamage      *
+*   -int useWeapon         *
+*   -string BANSHEE_NAME   *
+*   -int BANSHEE_HEALTH    *
+*   -string WEAPON1        *
+*   -string WEAPON2        *
+*   -string WEAPON3        *
+*   -int WEAPON1_DAMAGE    *
+*   -int WEAPON2_DAMAGE    *
+*   -int WEAPON3_DAMAGE    *
+*   -string weaponArray[]  *
+*   -int damageArray[]     *
 ****************************
+*   + Banshee()            *
 *   +void setEnemy()       *
+*   +void print()          *
 ****************************/
 
-#include "Banshee.h"
-#include <iostream>
-#include <string>
+#pragma once
+#ifndef BANSHEE_H
+#define BANSHEE_H
+#include<string>
+#include "Vicious.h"
 
-void Banshee::setEnemy()
+class Banshee : public Vicious
 {
-	int useElement;
+private:
 
-	setEnemyType("Banshee");
-	setHealth(13);
-	setHostile(hostile);
-	string weaponArray[] = { "choke", "scream", "turn you to stone" };
-	int damageArray[] = { 4, 6, 8 };
+	int useWeapon;   // variable to hold random number
 
-	useElement = randomize(0, 100);
+	const string BANSHEE_NAME = "Banshee";
+	const int BANSHEE_HEALTH = 13;
 
-	if (useElement % 2 == 0)
-	{
-		setWeapon(weaponArray[0]);
-		setWeaponDamage(damageArray[0]);
-	}
-	else
-		(primeFunction(useElement)) ? setWeapon(weaponArray[2]), setWeaponDamage(damageArray[2]) : setWeapon(weaponArray[1]), setWeaponDamage(damageArray[1]);
+	const string WEAPON1 = "a throat choke";
+	const string WEAPON2 = "an ear piercing scream";
+	const string WEAPON3 = "turning you into stone";
 
-}
+	const int WEAPON1_DAMAGE = 4;
+	const int WEAPON2_DAMAGE = 6;
+	const int WEAPON3_DAMAGE = 8;
 
-Banshee::Banshee(): Vicious() {
-	setEnemy();
-	setName("Banshee");
-}
+	// Arrays to hold the weapon names and damage
+	string weaponArray[3];
+	int damageArray[3];
+
+public:
+	Banshee();
+	void setEnemy();
+	void print();
+};
+#endif

@@ -8,9 +8,7 @@ private:
     int quantity;
 public:
     void setQuantity(int quantity);
-	int getQuantity() { return quantity; }
-    void use();
+    int getQuantity() { return quantity; }
     Ingestible();
 };
-
 #endif

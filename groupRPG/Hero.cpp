@@ -3,6 +3,9 @@
 
 #include "Hero.h"
 #include "Item.h"
+#include "Physical.h"
+#include "Magic.h"
+#include "Ingestible.h"
 #include <algorithm>
 #include <iostream>
 
@@ -96,61 +99,89 @@ int Hero::printWeapons() {
 	return weapon;
 }
 
-/*
-void Hero::getInventory(Item rtnInventory[], int &rtnNumItems) {
-	rtnInventory = inventory;
-	rtnNumItems = numItems;
-}
-*/
-
 void Hero::attack(Enemy &enemy) {
 	enemy.setHealth(enemy.getEnemyHealth() - physicalDamage - magicDamage);
 }
 
 void Hero::save(ostream &output) {
-	//output.write(reinterpret_cast<char *>(&health), sizeof(int));
 	output.write(reinterpret_cast<char *>(this), sizeof(Hero));
-	//output.write(reinterpret_cast<char *>(&maxHealth), sizeof(int));
-	//output.write(reinterpret_cast<char *>(&lives), sizeof(int));
-	//output.write(reinterpret_cast<char *>(&maxLives), sizeof(int));
-	////output.write(reinterpret_cast<char *>(currentWeapon), sizeof(Weapon));
-	//unsigned long size = inventory.size();
-	//output.write(reinterpret_cast<char *>(&size), sizeof(size));
+	output.write(reinterpret_cast<char *>(&health), sizeof(int));
+	output.write(reinterpret_cast<char *>(&maxHealth), sizeof(int));
+	output.write(reinterpret_cast<char *>(&lives), sizeof(int));
+	output.write(reinterpret_cast<char *>(&maxLives), sizeof(int));
+	if (currentWeapon == nullptr) {
+		name = "fist";
+	} else {
+		string name = (*currentWeapon).getName();
+	}
+	int nameSize = sizeof(name);
+	output.write(reinterpret_cast<char *>(&nameSize), sizeof(nameSize));
+	output.write(name.c_str(), sizeof(name));
+	unsigned long size = inventory.size();
+	output.write(reinterpret_cast<char *>(&size), sizeof(size));
 
-	//for (unsigned long i = 0; i < size; i++) {
-	//	Item* item = inventory.front();
-	//	output.write(reinterpret_cast<char *>(&item), sizeof(Item *));
-	//	inventory.pop_front();
-	//}
+	for (unsigned long i = 0; i < size; i++) {
+		name = inventory[i]->getName().c_str();
+		output.write(name.c_str(), sizeof(name));
+	}
+}
+
+Item* findItem(char *name) {
+	if (name == "Stick")
+		return new Physical(Physical::STICK);
+	else if (name == "Sword")
+		return new Physical(Physical::SWORD);
+	else if (name == "Brass knuckles")
+		return new Physical(Physical::KNUCKLES);
+	else if (name == "Gun")
+		return new Physical(Physical::GUN);
+	else if (name == "Dirt")
+		return new Magic(Magic::DIRT);
+	else if (name == "Fire")
+		return new Magic(Magic::FIRE);
+	else if (name == "Electricity")
+		return new Magic(Magic::ELECTRICITY);
+	else if (name == "Water")
+		return new Magic(Magic::WATER);
+	else if (name == "Ingestible")
+		return new Ingestible;
+	else
+		return nullptr;
 }
 
 void Hero::load(istream &input) {
-	input.read(reinterpret_cast<char *>(this), sizeof(Hero));
-	//int num;
+	// input.read(reinterpret_cast<char *>(this), sizeof(Hero));
+	int num;
 
-	//input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	//setHealth(num);
+	input.read(reinterpret_cast<char *>(&num), sizeof(int));
+	setHealth(num);
 
-	//input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	//setMaxHealth(num);
+	input.read(reinterpret_cast<char *>(&num), sizeof(int));
+	setMaxHealth(num);
 
-	//input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	//setLives(num);
+	input.read(reinterpret_cast<char *>(&num), sizeof(int));
+	setLives(num);
 
-	//input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	//setMaxLives(num);
+	input.read(reinterpret_cast<char *>(&num), sizeof(int));
+	setMaxLives(num);
 
-	////Weapon* weapon = nullptr;
+	char *name;
+	int nameSize = 0;
+	input.read(reinterpret_cast<char *>(&nameSize), sizeof(sizeof(nameSize)));
+	input.read(name, nameSize);
+	setCurrentWeapon(static_cast<Weapon *>(findItem(name)));
 	////input.read(reinterpret_cast<char *>(weapon), sizeof(Weapon));
 	////setCurrentWeapon(weapon);
-	//unsigned long size;
-	//input.read(reinterpret_cast<char *>(&size), sizeof(size));
+	unsigned long size;
+	input.read(reinterpret_cast<char *>(&size), sizeof(size));
 
-	//for (unsigned long i = 0; i < size; i++) {
-	//	Item* item;
-	//	input.read(reinterpret_cast<char *>(&item), sizeof(Item *));
-	//	addToInventory(*item);
-	//}
+	for (unsigned long i = 0; i < size; i++) {
+		Item* item;
+		input.read(reinterpret_cast<char *>(&nameSize), sizeof(sizeof(nameSize)));
+		input.read(name, nameSize);
+		item = findItem(name);
+		addToInventory(*item);
+	}
 }
 
 Hero::Hero(string newName) {

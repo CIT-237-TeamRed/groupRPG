@@ -2,61 +2,66 @@
 
 ENEMY UML
 
+/*              Enemy              *
  ***********************************
- *     -int enemyType              *
+ *     -string enemyType           *
+ *    -string currentWeapon        *
+ *    -string characteristic       *
  *     -int health                 *
  *     -int weaponDamage           *
- *     -string currentWeapon       *
  *     -bool hostile               *
  ***********************************
- *     +void setWeapon(s)            *
- *     +void setHealth(i)            *
- *     +void setEnemyType(s)         *
- *     +void setWeaponDamage(i)      *
- *     +Enemy()                      *
- *     +string getEnemyType()        *
- *     +int getEnemyHealth()         *
- *     +string getEnemyWeapon()      *
- *     +int getWeaponDamage()        *
- *     +bool isHostile()             *
- *     +virtual void setEnemy()      *
- *     +int randomize(i, i)          *
- *     +bool primeFunction(i)        *
- *************************************/
+ *     +Enemy()                    *
+ *     +void setWeapon(str)        *
+ *     +void setHealth(int)        *
+ *     +void setEnemyType(str)     *
+ *     +void setWeaponDamage(int)  *
+ *     +void setHostile(bool)      *
+ *     +void setCharacteristic(str)*
+ *     +string getEnemyType()      *
+ *     +int getEnemyHealth()       *
+ *     +string getEnemyWeapon()    *
+ *     +int getWeaponDamage()      *
+ *     +bool isHostile()           *
+ *     +string toString()          *
+ *     +virtual void setEnemy()    *
+ *     +virtual void print()       *
+ *     +int randomize(i, i)        *
+ *     +bool primeFunction(i)      *
+ ***********************************/
 
 
 
 BENIGN AND VICIOUS UML
 
 ****************************
+*   string characteristic  *
+****************************
 *      bool hostile        *
 ****************************
 *    Benign() / Vicious()  *
 *   virtual void setEnemy  *
+*   virtual void print()   *
 ****************************/
 
+BIGFOOT  &  BANSHEE  &  SILVERMAN  &  THIEF UML
+     replace NAME with name above
 
-
-
-
-
-
-BIGFOOT  &   BANSHEE UML
-
+/*      Name               *
 ****************************
-*   -int weaponDamage      *
+*   -int useWeapon         *
+*   -string NAME_NAME      *
+*   -int NAME_HEALTH       *
+*   -string WEAPON1        *
+*   -string WEAPON2        *
+*   -string WEAPON3        *
+*   -int WEAPON1_DAMAGE    *
+*   -int WEAPON2_DAMAGE    *
+*   -int WEAPON3_DAMAGE    *
+*   -string weaponArray[]  *
+*   -int damageArray[]     *
 ****************************
+*      + Name()            *
 *   +void setEnemy()       *
+*   +void print()          *
 ****************************/
-
-
-
-
-
-
-SILVERMAN  &  THIEF UML
-****************************
-*   -int weaponDamage      *
-***************************
-*   +void setEnemy()       *
-***************************/

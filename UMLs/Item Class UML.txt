@@ -1,5 +1,8 @@
 ITEM
--itemName: string
+#itemName: string
 
-+getItemName():string
-+getItemQuantity():int
++setName(string name): void
++getName():string
++operator== (Item* right): bool
++<<virtual>>abstract():void
+---------------------------

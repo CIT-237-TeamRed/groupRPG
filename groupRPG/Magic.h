@@ -1,3 +1,6 @@
+// Samuel Silverman
+// Magic Weapon class
+
 #pragma once
 #ifndef MAGIC_H
 #define MAGIC_H
@@ -11,7 +14,7 @@ private:
 public:
     void setType(Type type);
     Type getType() {return type;}
-    //void use();
     Magic(Type type);
 };
+
 #endif

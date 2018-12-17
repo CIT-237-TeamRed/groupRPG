@@ -6,7 +6,8 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "cd groupRPG/; g++ linkedListItems.cpp Hero.cpp Leader.cpp Warrior.cpp Mage.cpp Enemy.cpp Map.cpp Ingestible.cpp Item.cpp Tool.cpp Magic.cpp Weapon.cpp Physical.cpp && ./a.out",
+            "command": "cd groupRPG/; clang++ -g Game.cpp Banshee.cpp Benign.cpp Bigfoot.cpp Enemy.cpp Hero.cpp Ingestible.cpp Item.cpp Leader.cpp Mage.cpp Magic.cpp Map.cpp Physical.cpp Silverman.cpp Thief.cpp Tool.cpp Vicious.cpp Viscious.cpp Warrior.cpp Weapon.cpp -o a.out && ./a.out",
+
             "group": {
                 "kind": "build",
                 "isDefault": true

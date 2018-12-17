@@ -1,5 +1,5 @@
 // Daniel Richardson
-// Nov 8, 2018
+// Nov 8, 2018 - Dec. 15, 2018
 
 #pragma once
 #ifndef ENEMY_H
@@ -10,63 +10,73 @@ using namespace std;
 
 /*              Enemy              *
  ***********************************
- *     -int enemyType              *
+ *     -string enemyType           *
+ *    -string currentWeapon        *
+ *    -string characteristic       *
  *     -int health                 *
  *     -int weaponDamage           *
- *     -string currentWeapon       *
  *     -bool hostile               *
  ***********************************
- *     +void setWeapon(s)            *
- *     +void setHealth(i)            *
- *     +void setEnemyType(s)         *
- *     +void setWeaponDamage(i)      *
- *     +Enemy()                      *
- *     +string getEnemyType()        *
- *     +int getEnemyHealth()         *
- *     +string getEnemyWeapon()      *
- *     +int getWeaponDamage()        *
- *     +bool isHostile()             *
- *     +virtual void setEnemy()      *
- *     +int randomize(i, i)          *
- *     +bool primeFunction(i)        *
+ *     +Enemy()                    *
+ *     +void setWeapon(str)        *
+ *     +void setHealth(int)        *
+ *     +void setEnemyType(str)     *
+ *     +void setWeaponDamage(int)  *
+ *     +void setHostile(bool)      *
+ *     +void setCharacteristic(str)*
+ *     +string getEnemyType()      *
+ *     +int getEnemyHealth()       *
+ *     +string getEnemyWeapon()    *
+ *     +int getWeaponDamage()      *
+ *     +bool isHostile()           *
+ *     +string toString()          *
+ *     +virtual void setEnemy()    *
+ *     +virtual void print()       *
+ *     +int randomize(i, i)        *
+ *     +bool primeFunction(i)      *
  ***********************************/
 
 
 class Enemy
 {
 	//Accessors
-private:                             
+private:
 	string enemyType;
-	int health;                           // Might need to set to virtual
-	int weaponDamage;
-	string name = "Enemy";
-
+	string characteristic;
 	string currentWeapon;
+
+	int health;
+	int weaponDamage;
 
 	bool hostile;
 
 	//Mutators
-public:                              
+public:
+	Enemy();
+
 	void setWeapon(string);
 	void setHealth(int);
-	void setEnemyType(string);           // this will set the enemy being benign or viscous (not sure how to do that)
+	void setEnemyType(string);           // this will set the enemy to Thief, Silverman, Bigfoot, Banshee
 	void setWeaponDamage(int);
 	void setHostile(bool);
+	void setCharacteristic(string);     // this will set the enemy to benign or vicious
 
-	void setName(string newName);
-	string getName() { return name; }
-	
-	Enemy();
 	string getEnemyType();
 	int getEnemyHealth();
 	string getEnemyWeapon();
 	int getWeaponDamage();
+	string getCharacteristic();
 	bool isHostile();
+	string toString();
 
 	virtual void setEnemy() = 0;            // Abstract method that will be used in the main to set all the statuses for the enemy
+	virtual void print() = 0;                // cout getEnemyType
 
-	int randomize(int, int);                 // To randomize which weapons will be used. Even # is one weapon, Odd # is another weapon, Prime # is another weapon
+	int randomize(int, int);                 // To randomize which weapons will be used. Based on the number being even, odd, or prime will select type of weapon from an array
 	bool primeFunction(int);                 // To determine if the random number is a prime
 
 };
 #endif
+
+
+

@@ -1,3 +1,6 @@
+// Samuel Silverman
+// Item class
+
 #pragma once
 #ifndef ITEM_H
 #define ITEM_H
@@ -10,8 +13,7 @@ protected:
 public:
 	void setName(string name);
 	string getName() { return name; }
-	//bool operator== (Item right);
-	bool operator== (Item* right);
-	//virtual void use() = 0;
+	bool operator== (Item* right); // Overloaded comparison operator
+	virtual void abstract() = 0;
 };
 #endif

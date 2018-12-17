@@ -1,22 +1,37 @@
 MAP
 -Terrain:enum
+	LAND
+	WATER
 -unit:struct
 	isEnemy:bool
 	isItem:bool
 	terrain:Terrain
+-heroX:int
+-heroY:int
 -width:int
 -length:int
 -grid:unit**
 
++Map(width:int, length:int)
++~Map()
+
 +setDimensions(width:int, length:int):void
++setHeroCoords(x:int, y:int):void
 +setTerrain(x:int, y:int):void
 +switchEnemy(x:int, y:int):void
 +switchItem(x:int, y:int):void
++switchEnemy(x:int, y:int):void
++generateMap():void
++save(&output:ostream):void
++load(&input:ostream):void
 
++getHeroX():int
++getHeryY():int
 +getEnemyState(x:int, y:int):bool
 +getItemState(x:int, y:int):bool
++isEnemyNearby(x:int, y:int):bool
++isItemNearby(x:int, y:int):bool
 +getTerrain(x:int, y:int):int
 +getLength():int
 +getWidth():int
 
-+Map(width:int, length:int)
