@@ -1,36 +1,18 @@
 // Daniel Richardson
-// Nov. 8 - Dec. 15
+// Nov. 8
 
 /*      Silverman          *
 ****************************
-*   -int useWeapon         *
-*   -string SILVERMAN_NAME *
-*   -int SILVERMAN_HEALTH  *
-*   -string WEAPON1        *
-*   -string WEAPON2        *
-*   -string WEAPON3        *
-*   -int WEAPON1_DAMAGE    *
-*   -int WEAPON2_DAMAGE    *
-*   -int WEAPON3_DAMAGE    *
-*   -string weaponArray[]  *
-*   -int damageArray[]     *
-****************************
-*   + Silverman()          *
+*   -int weaponDamage      *
+***************************
 *   +void setEnemy()       *
-*   +void print()          *
-****************************/
+***************************/
 
 #include "Silverman.h"
 #include <string>
 #include <iostream>
-#include <ctime>
 
 using namespace std;
-
-Silverman::Silverman()
-{
-	setEnemy();
-}
 
 void Silverman::setEnemy()
 {
@@ -38,10 +20,6 @@ void Silverman::setEnemy()
 	setEnemyType(SILVERMAN_NAME);
 	setHealth(SILVERMAN_HEALTH);
 	setHostile(hostile);
-
-	unsigned seed = time(0);
-
-	srand(seed);
 
 	// setting the weapon names in the array
 	weaponArray[0] = WEAPON1;
@@ -67,4 +45,9 @@ void Silverman::setEnemy()
 void Silverman::print()
 {
 	cout << getEnemyType();
+}
+
+Silverman::Silverman() : Benign() {
+	setEnemy();
+	setName("Silverman");
 }

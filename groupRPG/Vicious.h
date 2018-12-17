@@ -1,5 +1,5 @@
 // Daniel Richardson
-// Nov. 8 - Dec. 15
+// Nov. 8, 
 
 #pragma once
 #ifndef VICIOUS_H

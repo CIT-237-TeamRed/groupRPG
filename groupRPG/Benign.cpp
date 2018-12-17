@@ -1,5 +1,5 @@
 // Daniel Richardson
-// Nov. 8 - Dec. 15
+// Nov. 8
 
 /*        Benign           *
 ****************************
@@ -16,14 +16,11 @@
 #include <string>
 #include "Benign.h"
 #include <iostream>
-#include <ctime>
 
 using namespace std;
 
-Benign::Benign()
-{
+Benign::Benign(): Enemy() {
+	setName("Benign");
 	setCharacteristic(characteristic);
-};
-
-
+}
 

@@ -60,7 +60,7 @@ public:
 	void setWeaponDamage(int);
 	void setHostile(bool);
 	void setCharacteristic(string);     // this will set the enemy to benign or vicious
-
+	
 	string getEnemyType();
 	int getEnemyHealth();
 	string getEnemyWeapon();
@@ -77,6 +77,3 @@ public:
 
 };
 #endif
-
-
-

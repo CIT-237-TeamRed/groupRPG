@@ -23,23 +23,15 @@
 
 #include "Thief.h"
 #include <iostream>
-#include <ctime>
 
 using namespace std;
 
-Thief::Thief() : Benign()
-{
-	setEnemy();
-}
 
 void Thief::setEnemy()
 {
 	setEnemyType(THIEF_NAME);
 	setHealth(THIEF_HEALTH);
 	setHostile(hostile);     // hostile taken from benign class
-
-	unsigned seed = time(0);
-	srand(seed);
 
 	// Put the weapon names in the weapon array.  Would not allowed to be done in thief.h
 	weaponArray[0] = WEAPON1;
@@ -62,6 +54,11 @@ void Thief::setEnemy()
 	else
 		(primeFunction(useWeapon)) ? setWeapon(weaponArray[2]), setWeaponDamage(damageArray[2]) : setWeapon(weaponArray[1]), setWeaponDamage(damageArray[1]);
 
+}
+
+Thief::Thief(): Benign() {
+	setEnemy();
+	setName("Thief");
 }
 
 void Thief::print()

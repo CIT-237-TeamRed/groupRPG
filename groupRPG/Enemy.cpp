@@ -33,7 +33,7 @@
 #include "Enemy.h"
 #include <iostream>
 #include <sstream>
- //#include "Benign.h"
+//#include "Benign.h"
 using namespace std;
 
 void Enemy::setWeapon(string randoWeapon)  //set which weapon the enemy will be using
@@ -99,7 +99,7 @@ string Enemy::getCharacteristic()
 string Enemy::toString()
 {
 	ostringstream os;
-	os << "You have run into a " << getCharacteristic() << " " << getEnemyType() << " who will damage you with " << getEnemyWeapon() << "!";
+	os << "You have run into a " << getCharacteristic() <<" " << getEnemyType() << " who will damage you with " << getEnemyWeapon() << "!";
 	return os.str();
 }
 

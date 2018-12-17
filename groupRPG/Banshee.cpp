@@ -20,36 +20,44 @@
 *   +void print()          *
 ****************************/
 
-#pragma once
-#ifndef BANSHEE_H
-#define BANSHEE_H
-#include<string>
-#include "Vicious.h"
+#include "Banshee.h"
+#include <iostream>
+#include <string>
 
-class Banshee : public Vicious
+void Banshee::setEnemy()
 {
-private:
+	// Put the weapon names in the weapon array.  Would not allowed to be done in thief.h
+	weaponArray[0] = WEAPON1;
+	weaponArray[1] = WEAPON2;
+	weaponArray[2] = WEAPON3;
 
-	int useWeapon;   // variable to hold random number
+	damageArray[0] = WEAPON1_DAMAGE;
+	damageArray[1] = WEAPON2_DAMAGE;
+	damageArray[2] = WEAPON3_DAMAGE;
 
-	const string BANSHEE_NAME = "Banshee";
-	const int BANSHEE_HEALTH = 13;
+	// set the name, health, and that Banshee is vicious
+	setEnemyType(BANSHEE_NAME);
+	setHealth(BANSHEE_HEALTH);
+	setHostile(hostile);
 
-	const string WEAPON1 = "a throat choke";
-	const string WEAPON2 = "an ear piercing scream";
-	const string WEAPON3 = "turning you into stone";
+	useWeapon = randomize(0, 100);
 
-	const int WEAPON1_DAMAGE = 4;
-	const int WEAPON2_DAMAGE = 6;
-	const int WEAPON3_DAMAGE = 8;
+	if (useWeapon % 2 == 0)
+	{
+		setWeapon(weaponArray[0]);
+		setWeaponDamage(damageArray[0]);
+	}
+	else
+		(primeFunction(useWeapon)) ? setWeapon(weaponArray[2]), setWeaponDamage(damageArray[2]) : setWeapon(weaponArray[1]), setWeaponDamage(damageArray[1]);
 
-	// Arrays to hold the weapon names and damage
-	string weaponArray[3];
-	int damageArray[3];
+}
 
-public:
-	Banshee();
-	void setEnemy();
-	void print();
-};
-#endif
+Banshee::Banshee(): Vicious() {
+	setEnemy();
+	setName("Banshee");
+}
+
+void Banshee::print()
+{
+	cout << getEnemyType();
+}
