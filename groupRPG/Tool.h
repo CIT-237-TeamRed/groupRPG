@@ -7,6 +7,7 @@
 #include "Item.h"
 class Tool : public Item{
 protected:
+    virtual void abstract() { return; } // To make abstract
 public:
 	Tool(); // Constructor
 };

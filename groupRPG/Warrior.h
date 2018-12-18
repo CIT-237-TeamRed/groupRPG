@@ -7,13 +7,11 @@
 #include "Hero.h"
 class Warrior : public Hero {
 	private:
-		int maxHealth = 30;
-		int physicalDamage = 3;
-		int magicDamage = 1;
-		int energy = 30;
+		int maxHealth;
+		int physicalDamage;
+		int magicDamage;
 		virtual void abstract();
 	public:
-		Warrior(string name, int health, int lives);
 		Warrior(string name);
 };
 #endif

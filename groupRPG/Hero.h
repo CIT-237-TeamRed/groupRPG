@@ -16,26 +16,24 @@ class Hero {
 	protected:
 		string name;
 		int health;
-		int maxHealth = 20;
+		int maxHealth;
 		int lives;
-		int maxLives = 10;
 		Weapon* currentWeapon = nullptr;
-		//Item **inventory = nullptr;
-		//list<Item *> inventory;
 		vector<Item *> inventory;
 		int numItems = 0;
-		int maxItems = 30;
-		int energy;
-		int physicalDamage = 1;
-		int magicDamage = 1;
+		int maxLives = 3;
+		int physicalDamage;
+		int magicDamage;
 		virtual void abstract() = 0;
 	public:
+		class INVALID_HEALTH {}; //gets thrown in setHealth when 
 		void setHealth(int newHealth);
-		void setMaxHealth(int newMaxHealth);
 		void setLives(int newLives);
-		void setMaxLives(int newMaxLives);
 		void setCurrentWeapon(Weapon *newWeapon);
-		void setCurrentWeapon(int weaponNum);
+		void setCurrentWeapon(int weaponNum); //set current weapon 
+		void use(int ingestibleNum); //use an ingestible
+		void setPhysicalDamage(int newDamage);
+		void setMagicDamage(int newDamage);
 
 		void addToInventory(Item &newItem);
 		void removeFromInventory(Item &item);
@@ -45,20 +43,19 @@ class Hero {
 		int getLives() { return lives; };
 		int getMaxLives() { return maxLives; };
 		void printIventory();
-		int printWeapons();
+		int printWeapons(); //return number of weapons
+		int printIngestibles(); //return number and names of ingestibles
 		Weapon* getCurrentWeapon() { return currentWeapon; };
 		int getSizeOfInventory() { return numItems; };
-		int getMaxSizeOfInventory() { return maxItems; };
 		int getPhysicalDamage() { return physicalDamage; };
 		int getMagicDamage() { return magicDamage; };
-		//void getInventory(Item rtnInventory[], int &rtnNumItems);
-		void attack(Enemy &enemy);
+		//void getInventory(Item rtnInventory[], int &rtnNumItems)
 		void save(ostream &output);
 		void load(istream &input);
 
-		Hero(string name);
-		Hero(string name, int health, int lives);
-		Hero(string name, int health, int maxHealth, int lives, int maxLives);
+		// Hero(string name);
+		// Hero(string name, int health, int lives);
+		Hero(string name, int maxHealth, int physicalDamage, int magicDamage);
 		friend ostream &operator << (ostream &os, const Hero &hero);
 };
 #endif

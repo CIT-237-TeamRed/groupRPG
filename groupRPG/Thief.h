@@ -31,7 +31,7 @@ private:
 	int useWeapon; // to hold random number
 
 	const string THIEF_NAME = "Thief";
-	const int THIEF_HEALTH = 7;
+	const int THIEF_HEALTH = 90;
 
 	const string WEAPON1 = "a smack";
 	const string WEAPON2 = "a stick";

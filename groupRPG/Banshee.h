@@ -33,7 +33,7 @@ private:
 	int useWeapon;   // variable to hold random number
 
 	const string BANSHEE_NAME = "Banshee";
-	const int BANSHEE_HEALTH = 13;
+	const int BANSHEE_HEALTH = 100;
 
 	const string WEAPON1 = "a throat choke";
 	const string WEAPON2 = "an ear piercing scream";

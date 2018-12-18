@@ -3,10 +3,5 @@ void Leader::abstract() {
     return;
 }
 
-Leader::Leader(string name, int health, int lives): Hero(name, health, lives) {
-	
-}
-
-Leader::Leader(string name): Hero(name) {
-	
+Leader::Leader(string name): Hero(name, 25, 2, 2) {
 }

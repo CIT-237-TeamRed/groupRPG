@@ -28,14 +28,6 @@ void Map::setItem(int x, int y, bool set){ //set the item to be true or false ba
 	grid[x][y].isItem = set;
 }
 
-void Map::switchEnemy(int x, int y) { //reverses value if isEnemy for a unit (x,y)
-	grid[x][y].isEnemy = !grid[x][y].isEnemy;
-}
-
-void Map::switchItem(int x, int y) { //reverses value if isItem for a unit 
-	grid[x][y].isItem = !grid[x][y].isItem;
-}
-
 bool Map::isEnemyNearby(int x, int y){
 	//check the squares around (x,y) for enemy
 
@@ -52,19 +44,19 @@ bool Map::isEnemyNearby(int x, int y){
 	}
 
 	//if hero is not in top right corner, check top right unit
-	if (x < width && y > 0) {
+	if (x < width-1 && y > 0) {
 		if (grid[x + 1][y - 1].isEnemy)
 			return true;
 	}
 
 	//if hero is not on right side of map, check right unit
-	if (x < width) {
+	if (x < width-1) {
 		if (grid[x + 1][y].isEnemy)
 			return true;
 	}
 
 	//if hero is not in  bottom right corner, check bottom right unit
-	if (x < width && y < length) {
+	if (x < width-1 && y < length) {
 		if (grid[x + 1][y + 1].isEnemy)
 			return true;
 	}
@@ -108,19 +100,19 @@ bool Map::isItemNearby(int x, int y) {
 	}
 
 	//if hero is not in top right corner, check top right unit
-	if (x < width && y > 0) {
+	if (x < width-1 && y > 0) {
 		if (grid[x + 1][y - 1].isItem)
 			return true;
 	}
 
 	//if hero is not on right side of map, check right unit
-	if (x < width) {
+	if (x < width-1) {
 		if (grid[x + 1][y].isItem)
 			return true;
 	}
 
 	//if hero is not in  bottom right corner, check bottom right unit
-	if (x < width && y < length) {
+	if (x < width-1 && y < length) {
 		if (grid[x + 1][y + 1].isItem)
 			return true;
 	}

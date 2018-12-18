@@ -9,124 +9,134 @@
 #include <algorithm>
 #include <iostream>
 
+void Hero::setPhysicalDamage(int newDamage) {
+	physicalDamage+=newDamage;	
+}
+
+void Hero::setMagicDamage(int newDamage) {
+	magicDamage+=newDamage;	
+}
+
 void Hero::setHealth(int newHealth) {
-	if (newHealth > 0 && newHealth <= getMaxHealth()) {
+	if (newHealth > 0) {
 		health = newHealth;
 	} else {
-		health = -1;
+		throw INVALID_HEALTH(); //throws INVALID_HEALTH when health is <= 0
 	}
 }
 
-void Hero::setMaxHealth(int newMaxHealth) {
-	if (newMaxHealth > 0) {
-		maxHealth = newMaxHealth;
+void Hero::setLives(int newLives) { //set number of lives
+	if (newLives > 0) { //if you are setting the number of lives to be greater than zero
+		lives = newLives; //set number of lives to be newLives
 	} else {
-		maxHealth = -1;
+		lives = -1; //if you are setting < 1 then it makes number of lives -1
 	}
 }
 
-void Hero::setLives(int newLives) { 
-	if (newLives > 0 && newLives <= getMaxLives()) {
-		lives = newLives;
-	} else {
-		lives = -1;
+void Hero::setCurrentWeapon(Weapon *newWeapon) { //set current weapon, and modify physical and magic damage accordingly
+	//remove the damage from the weapon you have equipped at the moment
+	if (currentWeapon != nullptr) {
+		physicalDamage -= currentWeapon->getPhysicalDamage();
+		magicDamage -= currentWeapon->getMagicDamage();
 	}
+
+	currentWeapon = newWeapon;
+	physicalDamage += newWeapon->getPhysicalDamage();
+	magicDamage += newWeapon->getMagicDamage();
 }
 
-void Hero::setMaxLives(int newMaxLives) { 
-	if (newMaxLives > 0) {
-		maxLives = newMaxLives;
-	} else {
-		maxLives = -1;
-	}
-}
-
-void Hero::setCurrentWeapon(Weapon *newWeapon) {
-	//if (find(inventory.begin(), inventory.end(), newWeapon) != inventory.end()) {
-			currentWeapon = newWeapon;
-			physicalDamage += newWeapon->getPhysicalDamage();
-			magicDamage += newWeapon->getMagicDamage();
-	//}
-}
-
-void Hero::setCurrentWeapon(int weaponNum) {
-	int weapon = 0;
-	for (auto it = inventory.begin(); it != inventory.end(); it++) {
-		if (static_cast<Weapon *>(*it)) {
-			weapon++;
+void Hero::setCurrentWeapon(int weaponNum) { //takes in number, finds that weapon in inventory, calls (overloaded) setCurrentWeapon to set that weapon 
+	int weapon = 0; //used to find weapon in 
+	for (auto it = inventory.begin(); it != inventory.end(); it++) { //iterate through inventory, which is a vector
+		if (dynamic_cast<Weapon *>(*it)) { //check if iterator is pointing to a weapon
+			weapon++; //increment weapon
 		}
-		if (weapon == weaponNum) {
-			setCurrentWeapon(static_cast<Weapon *>(*it));
+		if (weapon == weaponNum) { //when you are at the correct item in inventory
+			setCurrentWeapon(dynamic_cast<Weapon *>(*it)); //set current weapon using overloaded setCurrentWeapon function
 		}
 	}
 }
 
-void Hero::addToInventory(Item &newItem) {
-	inventory.push_back(&newItem);
+void Hero::use(int ingestibleNum) { //ingest an ingestible
+	int ingestible = 0; //used to find ingestible in 
+	for (auto it = inventory.begin(); it != inventory.end(); it++) { //iterate through inventory
+		if (static_cast<Ingestible *>(*it)) { //check if iterator is pointing to ingestible
+			ingestible++;
+		}
+		if (ingestible == ingestibleNum) { //set the ingestible when you are at the correct place
+			static_cast<Ingestible *>(inventory.at(ingestible-1))->use(this); //use the ingestible, either altering health or damage
+			removeFromInventory(*(inventory.at(ingestible-1))); //delete the ingestible from inventory when you use it
+		}
+	}
+}
+
+void Hero::addToInventory(Item &newItem) { //add item to Inventory
+	inventory.push_back(&newItem); //add item to vector
 	numItems++;
-	//if (numItems + 1 < maxItems) {
-	//	inventory[numItems] = &newItem;
-	//	numItems++;
-	//}
 }
 
 void Hero::removeFromInventory(Item &item) {
 	//if (find(inventory.begin(), inventory.end(), item) != inventory.end()) {
 		//inventory.remove(&item);
-		for (auto it = inventory.begin(); it != inventory.end(); it++) {
+		for (auto it = inventory.begin(); it != inventory.end(); it++) { //iterate through inventory
+			//when on the item, erase it from the vector
 			if (*it == &item)
-				inventory.erase(it);
+				inventory.erase(it-1);
 		}
-		numItems--;
+		numItems--; //reduct number of items by one
 	//}
 }
 
-void Hero::printIventory() {
+void Hero::printIventory() { //print out the names of all items
 	cout << "Inventory: " << endl;
-	for (auto it = inventory.begin(); it != inventory.end(); it++) {
-		cout << (*it)->getName() << endl;
+	for (auto it = inventory.begin(); it != inventory.end(); it++) { //iterate through inventory 
+		cout << (*it)->getName() << endl; //cout the item name
 	}
 }
 
-int Hero::printWeapons() {
+int Hero::printWeapons() { //return number of weapons and cout the weapon names
 	cout << "Weapons: " << endl;
 	int weapon = 1;
-	for (auto it = inventory.begin(); it != inventory.end(); it++) {
-		if (static_cast<Weapon *>(*it)) {
-			cout << weapon++ << " " << (*it)->getName() << endl;
+	for (auto it = inventory.begin(); it != inventory.end(); it++) { //iterate through inventory
+		if (dynamic_cast<Weapon *>(*it)) { //check if item is weapon
+			cout << weapon++ << " " << (*it)->getName() << endl; //cout the number and name of that weapon
 		}
 	}
-	return weapon;
+	return weapon; //return number of weapons
 }
 
-void Hero::attack(Enemy &enemy) {
-	enemy.setHealth(enemy.getEnemyHealth() - physicalDamage - magicDamage);
+int Hero::printIngestibles() {//return number of ingestibles and cout their names
+	cout << "Ingestibles: " << endl;
+	int ingestible = 1;
+	for (auto it = inventory.begin(); it != inventory.end(); it++) { //iterate through inventory
+		if (dynamic_cast<Ingestible *>(*it)) { //check if item is Ingestible
+			cout << ingestible++ << " " << (*it)->getName() << endl; //cout name of item
+		}
+	}
+	return ingestible; //return number of ingestibles
 }
+void Hero::save(ostream &output) { //save the hero's variables'
+	output << health << endl;
+	output << lives << endl;
+	output << name << endl;
 
-void Hero::save(ostream &output) {
-	output.write(reinterpret_cast<char *>(this), sizeof(Hero));
-	output.write(reinterpret_cast<char *>(&health), sizeof(int));
-	output.write(reinterpret_cast<char *>(&maxHealth), sizeof(int));
-	output.write(reinterpret_cast<char *>(&lives), sizeof(int));
-	output.write(reinterpret_cast<char *>(&maxLives), sizeof(int));
+	string weaponName;
+	//save "fist" as the weapon if there is no weapon, otherwise save the weapon name
 	if (currentWeapon == nullptr) {
-		name = "fist";
+		weaponName = "fist";
 	} else {
-		string name = (*currentWeapon).getName();
+		weaponName = (*currentWeapon).getName();
 	}
-	int nameSize = sizeof(name);
-	output.write(reinterpret_cast<char *>(&nameSize), sizeof(nameSize));
-	output.write(name.c_str(), sizeof(name));
-	unsigned long size = inventory.size();
-	output.write(reinterpret_cast<char *>(&size), sizeof(size));
+	output << weaponName << endl;
 
-	for (unsigned long i = 0; i < size; i++) {
-		name = inventory[i]->getName().c_str();
-		output.write(name.c_str(), sizeof(name));
+	output << inventory.size() << endl;
+	//save inventory as just the names
+	for (unsigned long i = 0; i < inventory.size(); i++) {
+		output << inventory[i]->getName() << endl;
 	}
 }
 
-Item* findItem(char *name) {
+Item* findItem(string name) { //return item object using the name of the item
 	if (name == "Stick")
 		return new Physical(Physical::STICK);
 	else if (name == "Sword")
@@ -143,75 +153,68 @@ Item* findItem(char *name) {
 		return new Magic(Magic::ELECTRICITY);
 	else if (name == "Water")
 		return new Magic(Magic::WATER);
-	else if (name == "Ingestible")
-		return new Ingestible;
+	else if (name == "Health Potion")
+		return new Ingestible(Ingestible::HEALTH);
+	else if (name == "Weapon Potion")
+		return new Ingestible(Ingestible::DAMAGE);
+	else if (name == "Tool")
+		return new Tool;
 	else
 		return nullptr;
 }
+void Hero::load(istream &input) { //load hero's variables
+	input >> health;
+	input >> lives;
+	input >> name;
 
-void Hero::load(istream &input) {
-	// input.read(reinterpret_cast<char *>(this), sizeof(Hero));
-	int num;
+	string weaponName;
+	input.ignore(1, '\n');
+	// input >> weaponName;
+	getline(input, weaponName);
+	setCurrentWeapon(dynamic_cast<Weapon *>(findItem(weaponName)));
 
-	input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	setHealth(num);
-
-	input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	setMaxHealth(num);
-
-	input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	setLives(num);
-
-	input.read(reinterpret_cast<char *>(&num), sizeof(int));
-	setMaxLives(num);
-
-	char *name;
-	int nameSize = 0;
-	input.read(reinterpret_cast<char *>(&nameSize), sizeof(sizeof(nameSize)));
-	input.read(name, nameSize);
-	setCurrentWeapon(static_cast<Weapon *>(findItem(name)));
-	////input.read(reinterpret_cast<char *>(weapon), sizeof(Weapon));
-	////setCurrentWeapon(weapon);
-	unsigned long size;
-	input.read(reinterpret_cast<char *>(&size), sizeof(size));
-
+	int size;
+	input >> size;
+	input.ignore(1, '\n');
+	//save inventory as just the names
 	for (unsigned long i = 0; i < size; i++) {
-		Item* item;
-		input.read(reinterpret_cast<char *>(&nameSize), sizeof(sizeof(nameSize)));
-		input.read(name, nameSize);
-		item = findItem(name);
-		addToInventory(*item);
+		string itemName;
+		getline(input, itemName);
+		// input >> itemName;
+		Item *temp = findItem(itemName);
+		inventory.push_back(temp);
+		numItems++;
 	}
 }
 
-Hero::Hero(string newName) {
+// Hero::Hero(string newName) { //constructor that sets name of hero custom
+// 	name = newName;
+// 	setHealth(10);
+// 	setLives(maxLives);
+// }
+
+// Hero::Hero(string newName, int health, int lives) { //constructor that sets hero of newName, health, and lives
+// 	name = newName;
+// 	setHealth(health);
+// 	setLives(lives);
+// }
+
+Hero::Hero(string newName, int maxHealth, int physicalDamage, int magicDamage) { //constructor that sets the hero name, health, physical damage, and magic damage
 	name = newName;
 	setHealth(maxHealth);
 	setLives(maxLives);
+	this->maxHealth = maxHealth;
+	this->physicalDamage = physicalDamage;
+	this->magicDamage = magicDamage;
 }
 
-Hero::Hero(string newName, int health, int lives) { 
-	name = newName;
-	setHealth(health);
-	setLives(lives);
-	//inventory = new Item*[maxItems];
-}
-
-Hero::Hero(string newName, int health, int maxHealth, int lives, int maxLives) {
-	name = newName;
-	setMaxHealth(maxHealth);
-	setMaxLives(maxLives);
-	setHealth(health);
-	setLives(lives);
-	//inventory = new Item*[maxItems];
-}
-
-ostream &operator << (ostream &os, const Hero &hero) {
+ostream &operator << (ostream &os, const Hero &hero) { //<< overload to basically be a toString for a hero object
 	string weapon = "";
-	if (hero.currentWeapon == nullptr)
+	if (hero.currentWeapon == nullptr) //default weapon is fist if there is nothing else equipped
 		weapon = "fist";
 	else
 		weapon = hero.currentWeapon->getName();
-	os << hero.name << " has " << hero.health << "/" << hero.maxHealth << " HP, has " << hero.lives << " lives, is currently weilding a " << weapon << " with " << hero.physicalDamage << " physical damage and " << hero.magicDamage << " magic damage, and has " << hero.numItems << " item(s) in their inventory.";
+	os << hero.name << " has " << hero.health << " HP, has " << hero.lives << " lives, is currently weilding a " 
+		<< weapon << " with " << hero.physicalDamage << " physical damage and " << hero.magicDamage << " magic damage, and has " << hero.numItems << " item(s) in their inventory.";
 	return os;
 }

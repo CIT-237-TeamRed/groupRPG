@@ -1,18 +1,27 @@
 --------------------------|
 ITEM                      |
 --------------------------|
+#<<virtual>>abstract():void
 #itemName: string
 
 +setName(string name): void
 +getName():string
 +operator== (Item* right): bool
-+<<virtual>>abstract():void
 
 --------------------------|
 INGESTIBLE                |
 --------------------------|
 -quantity:int
+-<<virtual>>abstract():void
+-Type type;
+-quantity:int
 
++Type:enum
+    HEALTH
+    DAMAGE
++setPhysicalDamage(newDamage:int):void
++setMagicDamage(newDamage:int):void
++printIngestibles():void
 +setQuantity(quantity:int):void
 +getQuantity():int
 +Ingestible();
@@ -20,6 +29,8 @@ INGESTIBLE                |
 --------------------------|
 TOOL                      |
 --------------------------|
+#<<virtual>>abstract():void
+
 +Tool()
 
 --------------------------|
@@ -32,7 +43,6 @@ WEAPON                    |
 +getPhysicalDamage():int
 +setMagicDamage(physicalDamage:int):void
 +getMagicDamage():int
-+<<virtual>>abstract():void
 
 +Weapon(physicalDamage:int, magicDamage:int)
 +Weapon()
@@ -41,6 +51,7 @@ WEAPON                    |
 MAGIC                     |
 --------------------------|
 -Type type;
+-<<virtual>>abstract():void
 
 +Type:enum
     DIRT
@@ -55,6 +66,7 @@ MAGIC                     |
 PHYSICAL                  |
 --------------------------|
 -Type type;
+-<<virtual>>abstract():void
 
 +Type:enum 
     STICK

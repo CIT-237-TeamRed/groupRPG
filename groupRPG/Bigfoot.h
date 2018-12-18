@@ -32,8 +32,8 @@ private:
 
 	int useWeapon;   // variable to hold a random number
 
-	const string BANSHEE_NAME = "Bigfoot";
-	const int BANSHEE_HEALTH = 13;
+	const string BIGFOOT_NAME = "Bigfoot";
+	const int BIGFOOT_HEALTH = 130;
 
 	const string WEAPON1 = "a fist smash";
 	const string WEAPON2 = "a big foot stomp";

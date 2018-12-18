@@ -4,8 +4,5 @@ void Warrior::abstract() {
     return;
 }
 
-Warrior::Warrior(string name, int health, int lives): Hero(name, health, lives) {
-}
-
-Warrior::Warrior(string name): Hero(name) {
+Warrior::Warrior(string name): Hero(name, 30, 3, 1) {
 }

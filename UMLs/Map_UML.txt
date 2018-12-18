@@ -19,8 +19,8 @@ MAP
 +setHeroCoords(x:int, y:int):void
 +setTerrain(x:int, y:int):void
 +switchEnemy(x:int, y:int):void
-+switchItem(x:int, y:int):void
-+switchEnemy(x:int, y:int):void
++setEnemy(x:int, y:int, set:boolean):void
++setItem(x:int, y:int, set:boolean):void
 +generateMap():void
 +save(&output:ostream):void
 +load(&input:ostream):void

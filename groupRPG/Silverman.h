@@ -32,15 +32,15 @@ private:
 	int useWeapon; // to hold random number
 
 	const string SILVERMAN_NAME = "Silverman";
-	const int SILVERMAN_HEALTH = 7;
+	const int SILVERMAN_HEALTH = 75;
 
 	const string WEAPON1 = "a punch";
 	const string WEAPON2 = "a kick";
 	const string WEAPON3 = "a round house to the face";
 
 	const int WEAPON1_DAMAGE = 2;
-	const int WEAPON2_DAMAGE = 3;
-	const int WEAPON3_DAMAGE = 4;
+	const int WEAPON2_DAMAGE = 5;
+	const int WEAPON3_DAMAGE = 15;
 
 	// Arrays to hold the weapon names and damage
 	string weaponArray[3];

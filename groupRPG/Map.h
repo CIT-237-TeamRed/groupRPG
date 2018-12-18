@@ -23,13 +23,11 @@ private:
 	unit ** grid; //the structure of the map is a 2 dimensional array of 'units'
 
 public:
-	void setDimensions(int width, int length); //set dimensions by length and width
+	void setDimensions(int width, int length); //set dimensions by length and width, width is horizontal
 	void setHeroCoords(int x, int y); //set coordininates for hero
 	void setTerrain(int x, int y, Map::Terrain mapTerrain); //set the type of terrain in a specific unit
 	void setEnemy(int x, int y, bool set); //set the enemy to be true or false based on set
 	void setItem(int x, int y, bool set); //set the item to be true or false based on set
-	void switchEnemy(int x, int y); //if there is an enemy, call to make isEnemy false, and vice versa
-	void switchItem(int x, int y); //reverses the value of isItem for a certain unit
 	void generateMap(); //generates a map with randomly placed enemies and items 
 	void save(std::ostream &output); //saves map state to binary file
 	void load(std::istream &input); //loads map stat from binary file
